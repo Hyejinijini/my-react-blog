@@ -1,10 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
   return (
     <div>
-      <h1>404 Not Found</h1>
-      <Link to="/">홈으로 돌아가기</Link>
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <h1>404 Not Found</h1>
+        <Link to="/" className="text-red-500">
+          홈으로 돌아가기
+        </Link>
+      </div>
     </div>
   )
 }
