@@ -1,6 +1,4 @@
-import React, { lazy } from 'react'
-
-const About = lazy(() => import('@pages/about/AboutMe.jsx'))
+import About from '@pages/about/AboutMe.jsx'
 
 const router = [
   {
