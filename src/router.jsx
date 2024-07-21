@@ -10,14 +10,14 @@ import NotFound from '@common/components/NotFound.jsx'
 import home from '@pages/home/router.jsx'
 import about from '@pages/about/router.jsx'
 import movie from '@pages/movies/router.jsx'
-import travel from '@pages/travel/router.jsx'
 import food from '@pages/food/router.jsx'
+import travel from '@pages/travel/router.jsx'
 import HomeDetail from '@pages/home/router.jsx'
+import Project from '@pages/projects/Projects.jsx'
+import Contact from '@pages/contact/Contact.jsx'
+import Detail from '@pages/detail/Detail.jsx'
 
-const Project = lazy(() => import('@pages/projects/Projects.jsx'))
-const Contact = lazy(() => import('@pages/contact/Contact.jsx'))
 const Test = lazy(() => import('@pages/test/Test.jsx'))
-const Detail = lazy(() => import('@pages/detail/Detail.jsx'))
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         </Suspense>
       </Layout>
     ),
-    children: [...home, ...about, ...movie, ...travel, ...food, ...HomeDetail],
+    children: [...home, ...about, ...movie, ...food, ...HomeDetail, ...travel],
     errorElement: <NotFound />
   },
   {
@@ -45,7 +45,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/test',
-    element: <Test />,
+    element: (
+      <Suspense>
+        <Test />
+      </Suspense>
+    ),
     errorElement: <NotFound />
   },
   {
