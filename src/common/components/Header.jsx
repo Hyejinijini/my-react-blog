@@ -79,14 +79,6 @@ const Header = () => {
         >
           연락수단
         </Link>
-
-        {/* 연습용 링크 */}
-        <Link
-          to="/test"
-          className="text-stone-600 hover:text-rose-500 transition-all duration-200 text-xl p-2 text-center hover:text-2xl"
-        >
-          연습용
-        </Link>
       </div>
     </header>
   )
