@@ -15,9 +15,6 @@ import travel from '@pages/travel/router.jsx'
 import HomeDetail from '@pages/home/router.jsx'
 import Project from '@pages/projects/Projects.jsx'
 import Contact from '@pages/contact/Contact.jsx'
-import Detail from '@pages/detail/Detail.jsx'
-
-const Test = lazy(() => import('@pages/test/Test.jsx'))
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -43,20 +40,6 @@ const router = createBrowserRouter([
     element: <Contact />,
     errorElement: <NotFound />
   },
-  {
-    path: '/test',
-    element: (
-      <Suspense>
-        <Test />
-      </Suspense>
-    ),
-    errorElement: <NotFound />
-  },
-  {
-    path: '/blog/:id',
-    element: <Detail />,
-    errorElement: <NotFound />
-  }
 ])
 
 export default router
