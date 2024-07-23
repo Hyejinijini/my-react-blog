@@ -1,8 +1,8 @@
 {
-  "name": "react-template",
+  "name": "my-react-blog",
   "version": "1.0.0",
-  "description": "A React v18 template with Vite, TypeScript, Storybook, TailwindCSS, and more.",
-  "author": "hojae-lee <hojae-lee@github.com>",
+  "description": "A blog created with React, JavaScript, TailwindCSS, and more.",
+  "author": "hyejin-Bang",
   "license": "MIT",
   "type": "module",
   "scripts": {
