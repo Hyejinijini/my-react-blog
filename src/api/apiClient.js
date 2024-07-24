@@ -1,4 +1,4 @@
-import apiClient from './config.js'
+import apiClient from '@api/config.js'
 
 export const getRequest = async ({ url, params }) => {
   try {
