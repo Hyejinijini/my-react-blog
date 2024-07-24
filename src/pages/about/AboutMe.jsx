@@ -11,11 +11,11 @@ const AboutMe = () => {
       <div className="flex flex-col space-y-8 border-">
         <div className="flex items-center space-x-8">
           <div className="polaroid relative">
-            <img src="src/assets/images/프로필.jpg" alt="프로필 사진" className="polaroid-image" />
+            <img src="src/assets/images/프로필.webp" alt="프로필 사진" className="polaroid-image" />
             <div className="absolute -top-8 -left-14">
               <img
                 className="w-24 h-24 object-cover"
-                src="https://media-public.canva.com/23PTk/MAFQIE23PTk/1/t.png"
+                src="src/assets/images/스티커.webp"
                 alt="aesthetic washi tape"
               />
             </div>
@@ -37,12 +37,12 @@ const AboutMe = () => {
             </p>
           </div>
           <div className="polaroid-right">
-            <img src="src/assets/images/내소개사진1.jpg" alt="내소개사진" className="polaroid-image" />
+            <img src="src/assets/images/내소개사진.webp" alt="내소개사진" className="polaroid-image" />
           </div>
         </div>
         <div className="flex items-center space-x-8 py-8">
           <div className="polaroid-left">
-            <img src="src/assets/images/영종도여행_썸네일.jpg" alt="취미생활사진" className="polaroid-image" />
+            <img src="src/assets/images/영종도여행_썸네일.webp" alt="취미생활사진" className="polaroid-image" />
           </div>
           <div className="intro-text-right text-right">
             <h1 className="text-5xl font-bold text-gray-700 py-8">Hobby</h1>
