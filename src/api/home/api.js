@@ -1,4 +1,4 @@
-import { getRequest, postRequest, updateRequest, deleteRequest } from '../apiClient.js'
+import { getRequest, postRequest, updateRequest, deleteRequest } from '@api/apiClient.js'
 
 export const getUsers = async () => {
   return await getRequest({ url: '/users' })
