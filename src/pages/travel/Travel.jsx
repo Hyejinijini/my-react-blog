@@ -9,19 +9,19 @@ export const initialTravels = [
     id: 1,
     title: '여수',
     content: '미추와 함께하는 여수 여행 일기',
-    thumbnail: 'src/assets/images/여수여행_썸네일.jpg'
+    thumbnail: 'src/assets/images/여수여행_썸네일.webp'
   },
   {
     id: 2,
     title: '대전',
     content: '성심당을 가보다',
-    thumbnail: 'src/assets/images/대전여행_썸네일.jpg'
+    thumbnail: 'src/assets/images/대전여행_썸네일.webp'
   },
   {
     id: 3,
     title: '영종도',
     content: '인천 사람이라면 한 번쯤은 가본다는',
-    thumbnail: 'src/assets/images/영종도여행_썸네일.jpg'
+    thumbnail: 'src/assets/images/영종도여행_썸네일.webp'
   }
 ]
 
