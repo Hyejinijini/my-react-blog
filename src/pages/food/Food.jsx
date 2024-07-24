@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FoodList from '@pages/food/components/FoodList.jsx'
 import WriteFood from '@pages/food/components/WriteFood.jsx'
+import MetaTags from '@common/components/MetaTags.jsx'
 
 // 초기 데이터
 export const initialFoods = [
@@ -63,6 +64,9 @@ const Food = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* 글쓰기 버튼 */}
+
+      <MetaTags subTitle={' | 맛집 탐방'} description={'맛집을 소개하는 페이지입니다.'} keywords={'맛집'} />
+
       <button
         onClick={() => {
           setEditingFood(null) // 현재 수정 중인 항목을 초기화
