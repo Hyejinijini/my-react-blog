@@ -4,7 +4,7 @@ import { initialReviews } from '@pages/movies/Movies.jsx'
 import { initialTravels } from '@pages/travel/Travel.jsx'
 import { initialFoods } from '@pages/food/Food.jsx'
 
-import Welcome from './components/Welcome.jsx'
+import Welcome from '@pages/home/components/Welcome.jsx'
 import Pagination from '@common/components/Pagination.jsx'
 
 // Movie, Travel, Food 에서 가져온 데이터를 하나로 합친다.
