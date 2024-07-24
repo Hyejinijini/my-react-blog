@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReviewList from '@pages/movies/components/ReviewList.jsx'
 import WriteReview from '@pages/movies/components/WriteReview.jsx'
+import MetaTags from '@common/components/MetaTags.jsx'
 
 // 초기 데이터
 export const initialReviews = [
@@ -62,6 +63,8 @@ const Movies = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <MetaTags subTitle={' | 영화 리뷰'} description={'영화리뷰 페이지입니다.'} keywords={'영화, 리뷰'} />
+
       {/* 글쓰기 버튼 */}
       <button
         onClick={() => openWriteReview()}

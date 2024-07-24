@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import TravelList from '@pages/travel/components/TravelList.jsx'
 import WriteTravel from '@pages/travel/components/WriteTravel.jsx'
+import MetaTags from '@common/components/MetaTags.jsx'
 
 // 초기 데이터
 export const initialTravels = [
@@ -76,6 +77,8 @@ const Travel = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <MetaTags subTitle={' | 여행 일기'} description={'여행 일기 페이지입니다.'} keywords={'여행, 일기'} />
+
       {/* 글쓰기 버튼 */}
       {/* 사용자가 새 여행 목록을 작성할 수 있게 한다. 클릭 시 폼을 표시한다. */}
       <button
