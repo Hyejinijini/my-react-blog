@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import TravelList from './components/TravelList.jsx'
-import WriteTravel from './components/WriteTravel.jsx'
+import TravelList from '@pages/travel/components/TravelList.jsx'
+import WriteTravel from '@pages/travel/components/WriteTravel.jsx'
 
 // 초기 데이터
 export const initialTravels = [
