@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaHome } from 'react-icons/fa'
+import MetaTags from '@common/components/MetaTags.jsx'
 
 // 프로젝트 데이터 예제
 const projects = [
@@ -30,6 +31,8 @@ const projects = [
 const Projects = () => {
   return (
     <div className="container mx-auto px-4 py-8">
+      <MetaTags subTitle={' | 프로젝트'} description={'프로젝트 페이지입니다.'} keywords={'프로젝트'} />
+
       {/* 헤더 부분: 홈 아이콘과 제목 */}
       <div className="flex r mb-8 p-4">
         {/* 홈 아이콘 링크 */}
