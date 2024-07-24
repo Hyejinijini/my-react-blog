@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ReviewList from './components/ReviewList.jsx'
-import WriteReview from './components/WriteReview.jsx'
+import ReviewList from '@pages/movies/components/ReviewList.jsx'
+import WriteReview from '@pages/movies/components/WriteReview.jsx'
 
 // 초기 데이터
 export const initialReviews = [

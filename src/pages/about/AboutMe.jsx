@@ -1,4 +1,7 @@
 import React from 'react'
+import '@assets/styles/css/AboutMe.css' // 사용자 정의 CSS 파일 import
+
+import MetaTags from '@common/components/MetaTags'
 import './styles/AboutMe.css' // 사용자 정의 CSS 파일 import
 
 const AboutMe = () => {

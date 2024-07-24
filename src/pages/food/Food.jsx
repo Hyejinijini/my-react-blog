@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import FoodList from './components/FoodList.jsx'
-import WriteFood from './components/WriteFood.jsx'
+import FoodList from '@pages/food/components/FoodList.jsx'
+import WriteFood from '@pages/food/components/WriteFood.jsx'
 
 // 초기 데이터
 export const initialFoods = [
