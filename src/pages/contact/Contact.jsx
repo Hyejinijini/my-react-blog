@@ -2,9 +2,14 @@ import React from 'react'
 import { FaGithub, FaBlog, FaHome } from 'react-icons/fa' // GitHub, 블로그, 홈 아이콘 임포트
 import { Link } from 'react-router-dom' // Link 컴포넌트 임포트
 
+import MetaTags from '@common/components/MetaTags'
+
 const Contact = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-rose-50">
+
+      <MetaTags subTitle={' | 연락 수단'} description={'Contact 페이지입니다.'} keywords={'contact, github, blog'} />
+
       {/* Contact 텍스트 */}
       <h1 className="text-4xl font-bold mb-8">Contact</h1>
 
