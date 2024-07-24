@@ -1,9 +1,13 @@
 import React from 'react'
 import './styles/AboutMe.css' // 사용자 정의 CSS 파일 import
+import MetaTags from '@common/components/MetaTags'
 
 const AboutMe = () => {
   return (
     <div className="gamja-flower-regular flex flex-col items-center min-h-screen bg-rose-50 p-6 pt-14">
+
+      <MetaTags subTitle={' | 내 소개'} description={'나를 소개하는 페이지입니다.'} keywords={'자기소개, 취미'} />
+
       <div className="flex flex-col space-y-8 border-">
         <div className="flex items-center space-x-8">
           <div className="polaroid relative">
