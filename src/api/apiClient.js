@@ -1,6 +1,6 @@
 import apiClient from '@api/config.js'
 
-export const getRequest = async ({ url, params }) => {
+export const getRequest = async (url, params) => {
   try {
     const response = await apiClient.get(url, { params })
     return response.data
@@ -10,7 +10,7 @@ export const getRequest = async ({ url, params }) => {
   }
 }
 
-export const postRequest = async ({ url, data }) => {
+export const postRequest = async (url, data) => {
   try {
     const response = await apiClient.post(url, data)
     return response.data
@@ -20,7 +20,7 @@ export const postRequest = async ({ url, data }) => {
   }
 }
 
-export const updateRequest = async ({ url, data }) => {
+export const updateRequest = async (url, data) => {
   try {
     const response = await apiClient.put(url, data)
     return response.data
@@ -30,7 +30,7 @@ export const updateRequest = async ({ url, data }) => {
   }
 }
 
-export const deleteRequest = async ({ url, params }) => {
+export const deleteRequest = async (url, params) => {
   try {
     const response = await apiClient.delete(url, { params })
     return response.data

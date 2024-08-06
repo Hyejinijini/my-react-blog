@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '@assets/styles/css/AboutMe.css' // 사용자 정의 CSS 파일 import
 import MetaTags from '@common/components/MetaTags'
+import UserInfo from '@pages/about/components/UserInfo'
 
 const AboutMe = () => {
   return (
     <div className="gamja-flower-regular flex flex-col items-center min-h-screen bg-rose-50 p-6 pt-14">
-
       <MetaTags subTitle={' | 내 소개'} description={'나를 소개하는 페이지입니다.'} keywords={'자기소개, 취미'} />
 
       <div className="flex flex-col space-y-8 border-">
@@ -13,19 +13,10 @@ const AboutMe = () => {
           <div className="polaroid relative">
             <img src="src/assets/images/프로필.webp" alt="프로필 사진" className="polaroid-image" />
             <div className="absolute -top-8 -left-14">
-              <img
-                className="w-24 h-24 object-cover"
-                src="src/assets/images/스티커.webp"
-                alt="aesthetic washi tape"
-              />
+              <img className="w-24 h-24 object-cover" src="src/assets/images/스티커.webp" alt="aesthetic washi tape" />
             </div>
           </div>
-          <div className="intro-text text-right">
-            <h1 className="text-5xl font-bold text-gray-700 py-8">안녕하세요 ♪(´▽｀)</h1>
-            <p className="text-7xl text-gray-700">저는 방혜진</p>
-            <p className="text-7xl text-gray-700">입니다</p>
-            <p className="text-4xl text-rose-400 py-8">2001/08/13</p>
-          </div>
+          <UserInfo />
         </div>
         <div className="flex items-center space-x-8">
           <div className="intro-text-left text-left">
