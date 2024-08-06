@@ -8,6 +8,8 @@ import Welcome from '@pages/home/components/Welcome.jsx'
 import Pagination from '@common/components/Pagination.jsx'
 import MetaTags from '@common/components/MetaTags.jsx'
 
+import { getRequest } from '@/api/apiClient.js'
+
 // Movie, Travel, Food 에서 가져온 데이터를 하나로 합친다.
 // 각 항목에 type 을 추가해서, 어떤 카테고리의 데이터인지 구분할 수 있게 한다.
 const allData = [
