@@ -13,7 +13,7 @@ const Header = () => {
         <div className="flex gap-2 w-full items-center">
           <OffCanvasLeft />
           <div className="ml-1">
-            <img src="public/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
+            <img src="/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
           </div>
           <BlogTitle />
         </div>
