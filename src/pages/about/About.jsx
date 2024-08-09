@@ -1,6 +1,6 @@
 import MetaTags from '@common/components/MetaTags'
 import SideBar from '@common/components/SideBar.jsx'
-import AboutList from '@pages/about/components/AboutList.jsx'
+import AboutMain from '@pages/about/components/AboutMain.jsx'
 
 const About = () => {
   return (
@@ -13,7 +13,7 @@ const About = () => {
           <SideBar />
 
           {/* 메인 콘텐츠 */}
-          <AboutList />
+          <AboutMain />
         </div>
       </div>
     </div>

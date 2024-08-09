@@ -45,7 +45,7 @@ const NewWrite = () => {
       <div className="border border-b-rose-200 p-2 bg-rose-50 flex pb-2 gap-3 items-center">
         <div className="flex items-center gap-3 font-bold w-full">
           <OffCanvasLeft />
-          <img src="public/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
+          <img src="/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
           <p>New About</p>
         </div>
 

@@ -1,16 +1,18 @@
-import { Helmet } from 'react-helmet'
+import { HelmetProvider, Helmet } from 'react-helmet-async'
 
 const MetaTags = ({ title = 'HYEHYE', subTitle, description, keywords }) => {
   return (
-    <Helmet>
-      <title>
-        {title}
-        {subTitle}
-      </title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content="방혜진" />
-    </Helmet>
+    <HelmetProvider>
+      <Helmet>
+        <title>
+          {title}
+          {subTitle}
+        </title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="author" content="방혜진" />
+      </Helmet>
+    </HelmetProvider>
   )
 }
 
