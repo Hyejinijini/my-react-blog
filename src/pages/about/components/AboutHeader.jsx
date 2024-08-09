@@ -4,17 +4,15 @@ import OffCanvasLeft from '@common/components/header/OffCanvasLeft.jsx'
 import DropdownButton from '@common/components/header/DropdownButton.jsx'
 import CalendarModal from '@common/components/header/CalendarModal.jsx'
 import BlogTitle from '@common/components/header/BlogTitle.jsx'
-import HeaderList from '@common/components/header/HeaderList.jsx'
+import AboutHeaderList from '@pages/about/components/AboutHeaderList.jsx'
 
-const Header = () => {
+const AboutHeader = () => {
   return (
     <header className="text-gray-600 bg-rose-50 border-b border-b-rose-200">
       <div className="flex p-4 pb-2 gap-3 items-center">
         <div className="flex gap-2 w-full items-center">
           <OffCanvasLeft />
-          <div className="ml-1">
-            <img src="public/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
-          </div>
+          <div className="ml-2">{/* 아이콘 추가할 예정 */}</div>
           <BlogTitle />
         </div>
 
@@ -29,9 +27,9 @@ const Header = () => {
         </div>
       </div>
 
-      <HeaderList />
+      <AboutHeaderList />
     </header>
   )
 }
 
-export default Header
+export default AboutHeader
