@@ -56,5 +56,10 @@
     "storybook": "^8.1.11",
     "tailwindcss": "^3.4.4",
     "vite": "^5.3.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
