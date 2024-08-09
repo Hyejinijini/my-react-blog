@@ -3,6 +3,7 @@ import { getRequest } from '@/api/apiClient.js'
 import { PROFILE_URL } from '@api/keys/home/url.js'
 import { HiOutlineLink } from 'react-icons/hi'
 
+// REVIEWS - react hook form 으로 변경. valid 체크 필요 없음.
 const SideBar = () => {
   const [profile, setProfile] = useState(null)
   const [editMode, setEditMode] = useState(false)

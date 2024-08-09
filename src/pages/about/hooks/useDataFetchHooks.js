@@ -25,7 +25,7 @@ export const useAboutSwrHook = () => {
 
 /**
  * about 에서 목록 데이터 가져오는 Hook
- * @returns
+ * @returns 목록 데이터
  */
 export const useAboutListHook = () => {
   const [list, setList] = useState([])
