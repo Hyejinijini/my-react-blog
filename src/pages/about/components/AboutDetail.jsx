@@ -10,7 +10,7 @@ import { PROFILE_URL } from '@api/keys/home/url.js'
 
 import SideBar from '@pages/about/components/SideBar.jsx'
 import ReadMe from '@pages/about/components/ReadMe.jsx'
-import Header from '@common/components/Header.jsx'
+import Header from '@common/components/header/Header.jsx'
 
 const AboutDetail = () => {
   const navigate = useNavigate()

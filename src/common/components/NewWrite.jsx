@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import MetaTags from '@common/components/MetaTags.jsx'
-import OffCanvasLeft from '@common/components/header/OffCanvasLeft.jsx'
+import MetaTags from '@common/components/etc/MetaTags.jsx'
 import DropdownButton from '@common/components/header/DropdownButton.jsx'
 import CalendarModal from '@common/components/header/CalendarModal.jsx'
 import axios from 'axios'
@@ -44,7 +43,6 @@ const NewWrite = () => {
 
       <div className="border border-b-rose-200 p-2 bg-rose-50 flex pb-2 gap-3 items-center">
         <div className="flex items-center gap-3 font-bold w-full">
-          <OffCanvasLeft />
           <img src="/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
           <p>New About</p>
         </div>

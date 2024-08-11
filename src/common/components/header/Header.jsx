@@ -1,6 +1,5 @@
 import React from 'react'
 
-import OffCanvasLeft from '@common/components/header/OffCanvasLeft.jsx'
 import DropdownButton from '@common/components/header/DropdownButton.jsx'
 import CalendarModal from '@common/components/header/CalendarModal.jsx'
 import BlogTitle from '@common/components/header/BlogTitle.jsx'
@@ -11,7 +10,6 @@ const Header = () => {
     <header className="text-gray-600 bg-rose-50 border-b border-b-rose-200">
       <div className="flex p-4 pb-2 gap-3 items-center">
         <div className="flex gap-2 w-full items-center">
-          <OffCanvasLeft />
           <div className="ml-1">
             <img src="/HYEHYE.svg" alt="로고 이미지" className="w-12 h-12" />
           </div>
