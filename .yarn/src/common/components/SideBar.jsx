@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react'
+import { useForm, useFieldArray, Controller } from 'react-hook-form'
 import { getRequest } from '@/api/apiClient.js'
 import { PROFILE_URL } from '@api/keys/home/url.js'
 import { HiOutlineLink } from 'react-icons/hi'
 
-// REVIEWS - react hook form 으로 변경. valid 체크 필요 없음.
 const SideBar = () => {
   const [profile, setProfile] = useState(null)
   const [editMode, setEditMode] = useState(false)
-  const [formData, setFormData] = useState({
-    nickName: '',
-    name: '',
-    profileImage: '',
-    bio: '',
-    links: []
+
+  const { control, handleSubmit, setValue, getValues, reset, watch } = useForm({
+    defaultValues: {
+      nickName: '',
+      name: '',
+      profileImage: '',
+      bio: '',
+      links: []
+    }
+  })
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'links'
   })
 
   useEffect(() => {
@@ -21,7 +29,7 @@ const SideBar = () => {
         console.log('Profile data:', data) // 데이터 확인
         // 데이터가 예상과 다른 경우를 대비한 기본값 설정
         setProfile(data)
-        setFormData({
+        reset({
           nickName: data.nickName || '',
           name: data.name || '',
           profileImage: data.profileImage || '',
@@ -32,38 +40,22 @@ const SideBar = () => {
       .catch((error) => {
         console.error('Error fetching profile data:', error) // 오류 확인
       })
-  }, [])
+  }, [reset])
+
+  const onSubmit = (data) => {
+    // TODO: Save data to server or mock data
+    setProfile(data)
+    setEditMode(false)
+  }
 
   const handleEditClick = () => {
     setEditMode(true)
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
-
-  const handleSaveClick = () => {
-    // TODO: Save formData to server or mock data
-    setProfile(formData)
-    setEditMode(false)
-  }
-
   const handleCancelClick = () => {
     setEditMode(false)
-    // Optionally, revert formData to the original profile data
-    setFormData(profile)
-  }
-
-  const handleLinkChange = (index, value) => {
-    const updatedLinks = formData.links.map((link, i) => (i === index ? value : link))
-    setFormData({
-      ...formData,
-      links: updatedLinks
-    })
+    // Revert form data to the original profile data
+    reset(profile)
   }
 
   if (!profile) return <div>Loading...</div>
@@ -91,84 +83,116 @@ const SideBar = () => {
           )}
         </div>
 
-        <div>
-          {editMode ? (
-            <div className="flex flex-col items-center space-y-1 text-sm">
-              <div className="w-full max-w-xs sm:max-w-sm">
-                <label className="block mb-2 text-sm font-bold text-gray-700">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Name"
-                  className="border border-gray-300 focus:outline-none focus:ring-rose-500 focus:border-rose-500 rounded-md p-2 px-3 py-1 mb-2 w-full"
-                />
-              </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            {editMode ? (
+              <div className="flex flex-col items-center space-y-1 text-sm">
+                <div className="w-full max-w-xs sm:max-w-sm">
+                  <label className="block mb-2 text-sm font-bold text-gray-700">Name</label>
+                  <Controller
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        placeholder="Name"
+                        className="border border-gray-300 focus:outline-none focus:ring-rose-500 focus:border-rose-500 rounded-md p-2 px-3 py-1 mb-2 w-full"
+                      />
+                    )}
+                  />
+                </div>
 
-              <div className="w-full max-w-xs sm:max-w-sm">
-                <label className="block mb-2 text-sm font-bold text-gray-700">Bio</label>
-                <textarea
-                  name="bio"
-                  value={formData.bio}
-                  onChange={handleChange}
-                  placeholder="Add a bio"
-                  className="border rounded-md h-20 p-2 px-3 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
-                />
-              </div>
+                <div className="w-full max-w-xs sm:max-w-sm">
+                  <label className="block mb-2 text-sm font-bold text-gray-700">Bio</label>
+                  <Controller
+                    name="bio"
+                    control={control}
+                    render={({ field }) => (
+                      <textarea
+                        {...field}
+                        placeholder="Add a bio"
+                        className="border rounded-md h-20 p-2 px-3 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                      />
+                    )}
+                  />
+                </div>
 
-              <div className="w-full max-w-xs sm:max-w-sm">
-                <label className="block mb-2 text-sm font-bold text-gray-700">Profile Image URL</label>
-                <input
-                  type="text"
-                  name="profileImage"
-                  value={formData.profileImage}
-                  onChange={handleChange}
-                  placeholder="Profile Image URL"
-                  className="border border-gray-300 rounded-md p-2 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
-                />
-              </div>
+                <div className="w-full max-w-xs sm:max-w-sm">
+                  <label className="block mb-2 text-sm font-bold text-gray-700">Profile Image URL</label>
+                  <Controller
+                    name="profileImage"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        placeholder="Profile Image URL"
+                        className="border border-gray-300 rounded-md p-2 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                      />
+                    )}
+                  />
+                </div>
 
-              <div className="w-full max-w-xs sm:max-w-sm">
-                <label className="block mb-2 text-sm font-bold text-gray-700">Social accounts</label>
-                {formData.links.map((link, index) => (
-                  <div key={index} className="flex items-center mb-2 space-x-2">
-                    <HiOutlineLink className="text-gray-600 text-lg" />
-                    <input
-                      type="text"
-                      value={link.url}
-                      onChange={(e) => handleLinkChange(index, e.target.value)}
-                      placeholder="Link URL"
-                      className="border rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
-                    />
-                  </div>
-                ))}
-              </div>
+                <div className="w-full max-w-xs sm:max-w-sm">
+                  <label className="block mb-2 text-sm font-bold text-gray-700">Social accounts</label>
+                  {fields.map((item, index) => (
+                    <div key={item.id} className="flex items-center mb-2 space-x-2">
+                      <HiOutlineLink className="text-gray-600 text-lg" />
+                      <Controller
+                        name={`links[${index}].url`}
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            {...field}
+                            placeholder="Link URL"
+                            className="border rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                          />
+                        )}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => remove(index)}
+                        className="text-red-500 rounded-md h-8 w-8 flex items-center justify-center hover:bg-rose-400 hover:text-white duration-100"
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => append({ url: '' })}
+                    className="border border-gray-300 bg-gray-50 rounded-md h-8 hover:bg-gray-200 duration-100 w-full mt-1 mb-1"
+                  >
+                    Add Social Account
+                  </button>
+                </div>
 
-              <div className="flex space-x-1.5 w-full max-w-xs sm:max-w-sm pt-1">
-                <button
-                  onClick={handleSaveClick}
-                  className="border border-rose-400 bg-rose-400 text-white rounded-md h-8 hover:bg-rose-500 duration-100 w-1/6"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={handleCancelClick}
-                  className="border border-gray-300 bg-gray-50 rounded-md h-8 hover:bg-gray-200 duration-100 w-1/4"
-                >
-                  Cancel
-                </button>
+                <div className="flex space-x-1.5 w-full max-w-xs sm:max-w-sm pt-1">
+                  <button
+                    type="submit"
+                    className="border border-rose-400 bg-rose-400 text-white rounded-md h-8 hover:bg-rose-500 duration-100 w-1/6"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCancelClick}
+                    className="border border-gray-300 bg-gray-50 rounded-md h-8 hover:bg-gray-200 duration-100 w-1/4"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
-            </div>
-          ) : (
-            <button
-              className="border border-rose-200 bg-rose-50 rounded-md h-8 hover:bg-rose-100 duration-100 mb-6 sm:w-full w-full md:w-64 lg:w-72"
-              onClick={handleEditClick}
-            >
-              Edit profile
-            </button>
-          )}
-        </div>
+            ) : (
+              <button
+                type="button"
+                className="border border-rose-200 bg-rose-50 rounded-md h-8 hover:bg-rose-100 duration-100 mb-6 sm:w-full w-full md:w-64 lg:w-72"
+                onClick={handleEditClick}
+              >
+                Edit profile
+              </button>
+            )}
+          </div>
+        </form>
 
         {/* 구분선 */}
         {!editMode && <hr className="border-1 border-rose-100 mb-6 md:w-64 lg:w-72" />}
