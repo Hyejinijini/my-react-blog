@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState} from 'react'
 
 import AboutSearch from '@/pages/about/components/AboutSearch.jsx'
 import AboutList from '@/pages/about/components/AboutList.jsx'
