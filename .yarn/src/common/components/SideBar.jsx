@@ -3,10 +3,13 @@ import { useForm, useFieldArray, Controller } from 'react-hook-form'
 import { getRequest } from '@/api/apiClient.js'
 import { PROFILE_URL } from '@api/keys/home/url.js'
 import { HiOutlineLink } from 'react-icons/hi'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css' // 기본 스타일을 임포트합니다.
 
 const SideBar = () => {
   const [profile, setProfile] = useState(null)
   const [editMode, setEditMode] = useState(false)
+  const [date, setDate] = useState(new Date())
 
   const { control, handleSubmit, setValue, getValues, reset, watch } = useForm({
     defaultValues: {
@@ -58,8 +61,6 @@ const SideBar = () => {
     reset(profile)
   }
 
-  if (!profile) return <div>Loading...</div>
-
   return (
     <aside>
       <div className="mt-2 sm:ml-4 sm:mt-2 sm:mr-4 md:ml-0 ml-4 mr-4">
@@ -67,7 +68,7 @@ const SideBar = () => {
         <div className="sm:flex md:flex-col flex flex-row">
           <div>
             <img
-              src={profile.profileImage}
+              src={profile?.profileImage}
               alt="프로필 이미지"
               className="rounded-full w-24 h-24 ml-0 mr-4 mt-8 border-2 border-rose-200 sm:w-28 sm:h-28 md:w-64 md:h-64 lg:w-72 lg:h-72"
             />
@@ -76,9 +77,9 @@ const SideBar = () => {
           {/* 이름 */}
           {!editMode && (
             <div className="flex flex-col sm:py-10 md:py-4 py-8">
-              <span className="text-2xl font-bold text-gray-600">{profile.name}</span>
-              <span className="text-xl font-thin text-gray-400">{profile.nickName}</span>
-              <span className="text-base text-gray-600 py-4 pb-1">{profile.bio}</span>
+              <span className="text-2xl font-bold text-gray-600">{profile?.name}</span>
+              <span className="text-xl font-thin text-gray-400">{profile?.nickName}</span>
+              <span className="text-base text-gray-600 py-4 pb-1">{profile?.bio}</span>
             </div>
           )}
         </div>
@@ -198,7 +199,7 @@ const SideBar = () => {
         {!editMode && <hr className="border-1 border-rose-100 mb-6 md:w-64 lg:w-72" />}
 
         {/* 링크 */}
-        {!editMode && profile.links && (
+        {!editMode && profile?.links && (
           <ul className="list-none space-y-3 md:w-64 text-sm">
             {profile.links.length > 0 ? (
               profile.links.map((link, index) => (
@@ -216,6 +217,12 @@ const SideBar = () => {
             )}
           </ul>
         )}
+
+        {/* Calendar */}
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold text-gray-700 mb-4">Calendar</h3>
+          <Calendar className="react-calendar" value={date} onChange={setDate} />
+        </div>
       </div>
     </aside>
   )
