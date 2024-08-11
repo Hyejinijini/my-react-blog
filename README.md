@@ -1,16 +1,32 @@
 # My React Blog - HYEHYE
 이 프로젝트는 리액트(React)로 개발한 개인 블로그입니다.
 
-## 과정 기록
-이 프로젝트의 개발 과정 및 관련 내용은 (∩^o^)⊃━★ [여기](https://hye-story-o0o.tistory.com/)에서 확인하실 수 있습니다.
+## 환경
+- Node.js v20.14.0+
+- Yarn v4.3.1+
+- vite v5.3.1+
 
-## 사용 기술
+## 기술
 - React
 - JavaScript
 - Tailwind CSS
 - Zustand
+- Axios
+- MSW
 
-## 기능
+## 실행 방법
+1. 레파지토리 클론:
+```
+git clone <repository-url>
+cd <project-directory>
+```
 
-## 구현
-**레이아웃**
+2. 의존성 설치:
+```
+yarn install
+```
+
+3. 개발 서버 시작:
+```
+yarn dev
+```
