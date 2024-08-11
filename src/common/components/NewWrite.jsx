@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import MetaTags from '@common/components/MetaTags.jsx'
+import MetaTags from '@common/components/etc/MetaTags.jsx'
 import OffCanvasLeft from '@common/components/header/OffCanvasLeft.jsx'
 import DropdownButton from '@common/components/header/DropdownButton.jsx'
 import CalendarModal from '@common/components/header/CalendarModal.jsx'

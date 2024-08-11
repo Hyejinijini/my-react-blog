@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '@common/components/Header.jsx'
-import SideBar from '@common/components/SideBar.jsx'
-import Footer from '@common/components/Footer.jsx'
+import Header from '@common/components/header/Header.jsx'
+import SideBar from '@common/components/sidebar/SideBar.jsx'
+import Footer from '@common/components/footer/Footer.jsx'
 
 const Layout = ({ children }) => {
   return (

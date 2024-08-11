@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaHome } from 'react-icons/fa'
-import MetaTags from '@common/components/MetaTags.jsx'
+import MetaTags from '@common/components/etc/MetaTags.jsx'
 
 // 프로젝트 데이터 예제
 const projects = [

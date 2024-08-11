@@ -1,4 +1,4 @@
-import MetaTags from '@common/components/MetaTags'
+import MetaTags from '@common/components/etc/MetaTags'
 import AboutMain from '@pages/about/components/AboutMain.jsx'
 
 const About = () => {

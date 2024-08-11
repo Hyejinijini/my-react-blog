@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MetaTags from '@common/components/MetaTags.jsx'
+import MetaTags from '@common/components/etc/MetaTags.jsx'
 import ReadMe from '@pages/home/components/ReadMe.jsx'
 
 const Home = () => {
