@@ -49,15 +49,6 @@ const HeaderList = () => {
               </Link>
             </div>
           </li>
-
-          <li className={`py-2 ${location.pathname === '/projects' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
-            <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
-              <VscGithubProject className="text-lg" />
-
-              {/* Projects 링크 */}
-              <Link to="/projects">Projects</Link>
-            </div>
-          </li>
         </ul>
       </nav>
     </div>
