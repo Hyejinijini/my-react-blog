@@ -4,8 +4,8 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 const ReadMe = () => {
   const [isEditing, setIsEditing] = useState(false)
-  const [title, setTitle] = useState('👋🏻 소개') // 초기 제목
-  const [content, setContent] = useState('안녕하세요 :)') // 초기 내용
+  const [title, setTitle] = useState('👋🏻 안녕하세요') // 초기 제목
+  const [content, setContent] = useState('안녕하세요 :) 저는 방혜진입니다.') // 초기 내용
 
   const handleEditClick = () => {
     setIsEditing(true)
@@ -26,7 +26,7 @@ const ReadMe = () => {
     <main className="flex-1 sm:mx-0 sm:mt-6 sm:p-4 md:p-1 md:mr-4 md:ml-0 mx-0 p-4 mt-6 lg:p-2">
       <div className="border border-rose-200 rounded-md p-4">
         <div className="text-xs p-2 flex items-center justify-between">
-          <div>HYEHYE / README.md</div>
+          <div>HYEHYE / 소개</div>
           <div className="flex items-center gap-2">
             {isEditing ? (
               <>
