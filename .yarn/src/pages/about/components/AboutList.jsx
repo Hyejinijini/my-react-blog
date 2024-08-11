@@ -15,8 +15,10 @@ const AboutList = ({ searchTerm }) => {
             <ul>
               <li>
                 <div className="flex gap-3 py-2 items-center mt-2">
-                  {/* REVIEWS : item.id 좋아요. 근데, 프로젝트 명명으로 url 을 잡아주는게 좀 더 가독성이 있어 보입니다. 예시) about/personal-things */}
-                  <Link to={`/about/${item.id}`} className="font-bold text-xl text-rose-500 hover:underline">
+                  <Link
+                    to={`/about/${encodeURIComponent(item.title)}`}
+                    className="font-bold text-xl text-rose-500 hover:underline"
+                  >
                     {item.title}
                   </Link>
                   <p className="border border-rose-200 rounded-2xl px-2 pb-1 text-sm">{item.label}</p>

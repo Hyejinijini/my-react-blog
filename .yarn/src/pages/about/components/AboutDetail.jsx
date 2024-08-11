@@ -19,11 +19,14 @@ const AboutDetail = () => {
   const [nickName, setNickName] = useState('')
   const [img, setImg] = useState('')
   const [detail, setDetail] = useState([])
-  const { id } = useParams()
+  const { title: paramTitle } = useParams()
+
+  console.log('URL 파라미터:', paramTitle)
 
   useEffect(() => {
     getRequest(ABOUT_LIST_URL)
       .then((data) => {
+        console.log('Fetched List Data:', data)
         setList(data)
       })
       .catch((error) => {
@@ -32,6 +35,7 @@ const AboutDetail = () => {
 
     getRequest(PROFILE_URL)
       .then((data) => {
+        console.log('Fetched Profile Data:', data)
         setImg(data.profileImage)
         setNickName(data.nickName)
       })
@@ -41,6 +45,7 @@ const AboutDetail = () => {
 
     getRequest(ABOUT_DETAIL_URL)
       .then((data) => {
+        console.log('Fetched Detail Data:', data)
         setDetail(data)
       })
       .catch((error) => {
@@ -48,30 +53,39 @@ const AboutDetail = () => {
       })
   }, [])
 
+  // title을 id로 매핑하기 위해 list에서 해당 title의 id를 찾음
+  const [currentId, setCurrentId] = useState(null)
+
   useEffect(() => {
-    const foundItem = list.find((item) => item.id === parseInt(id))
+    const decodedParamTitle = decodeURIComponent(paramTitle)
+    const foundItem = list.find((item) => item.title === decodedParamTitle)
+    console.log('Found Item:', foundItem)
+
     if (foundItem) {
       setTitle(foundItem.title)
       setLabel(foundItem.label)
+      setCurrentId(foundItem.id) // id를 currentId로 저장
     }
-  }, [list, id])
+  }, [list, paramTitle])
 
-  const handleClick = (id) => {
-    navigate(`/about/${id}`)
+  // detail을 id로 필터링
+  const filteredDetail = detail.filter((item) => item.id === currentId)
+  console.log('Filtered Detail:', filteredDetail)
+
+  const handleClick = (title) => {
+    navigate(`/about/${encodeURIComponent(title)}`)
   }
 
   const handleFolderClick = (folderId) => {
-    navigate(`/about/${id}/detail/${folderId}`)
+    navigate(`/about/${encodeURIComponent(title)}/detail/${folderId}`)
   }
-
-  const filteredDetail = detail.filter((item) => item.id === parseInt(id))
 
   return (
     <div className="max-w-screen-xl w-full mx-auto">
       <div>
         <div className="flex gap-2 items-end p-4 pb-5">
           {img && <img src={img} alt="Profile" className="w-6 h-6 rounded-full border border-rose-200" />}
-          <p className="text-xl hover:underline hover:cursor-pointer" onClick={() => handleClick(id)}>
+          <p className="text-xl hover:underline hover:cursor-pointer" onClick={() => handleClick(title)}>
             {title}
           </p>
           {label && <p className="border border-rose-200 rounded-2xl px-2 pb-0.5 text-sm">{label}</p>}
@@ -93,7 +107,7 @@ const AboutDetail = () => {
                   <div>
                     <p
                       className="p-2.5 pl-4 text-sm border-b border-rose-200 flex items-center hover:bg-rose-50"
-                      onClick={() => handleFolderClick(item.id)} // item.id를 사용하여 이동
+                      onClick={() => handleFolderClick(item.id)}
                     >
                       <FaFolder className="text-blue-400 text-base mr-2" />
                       <span className="inline text-base hover:text-rose-500 hover:underline hover:cursor-pointer flex-grow">
