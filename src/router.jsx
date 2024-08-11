@@ -12,6 +12,7 @@ import home from '@pages/home/router.jsx'
 import about from '@pages/about/router.jsx'
 import Project from '@pages/projects/Projects.jsx'
 const DetailPage = lazy(() => import('@pages/about/components/DetailPage.jsx'))
+const AboutDetail = lazy(() => import('@pages/about/components/AboutDetail.jsx'))
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -37,6 +38,15 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <DetailPage />
+      </Suspense>
+    ),
+    errorElement: <NotFound />
+  },
+  {
+    path: 'about/:title',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AboutDetail />
       </Suspense>
     ),
     errorElement: <NotFound />
