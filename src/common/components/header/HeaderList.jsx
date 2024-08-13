@@ -1,25 +1,15 @@
-import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useRequestHook } from '@common/hooks/useDataFetchHooks.js'
 import { ABOUT_LIST_URL } from '@api/keys/about/url.js'
-import { getRequest } from '@/api/apiClient.js'
 
 import { AiOutlineHome } from 'react-icons/ai'
 import { FaRegBookmark } from 'react-icons/fa6'
-import { VscGithubProject } from 'react-icons/vsc'
 
 const HeaderList = () => {
   const location = useLocation()
-  const [list, setList] = useState([])
+  const url = ABOUT_LIST_URL // 데이터 URL
 
-  useEffect(() => {
-    getRequest(ABOUT_LIST_URL)
-      .then((data) => {
-        setList(data)
-      })
-      .catch((error) => {
-        console.error('Error fetching profile data:', error) // 오류 확인
-      })
-  }, [])
+  const { state: items } = useRequestHook(url)
 
   return (
     <div className="px-4">
@@ -44,7 +34,7 @@ const HeaderList = () => {
                   className="badge text-gray-600 font-bold bg-rose-200 ml-2 rounded-full border border-rose-200 text-sm px-1.5
         "
                 >
-                  {list.length}
+                  {items.length}
                 </span>
               </Link>
             </div>
