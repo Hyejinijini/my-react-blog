@@ -7,7 +7,7 @@ import { FaRegBookmark } from 'react-icons/fa6'
 
 const HeaderList = () => {
   const location = useLocation()
-  const url = ABOUT_LIST_URL
+  const url = ABOUT_LIST_URL // 데이터 URL
 
   const { state: items } = useRequestHook(url)
 
