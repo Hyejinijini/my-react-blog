@@ -1,25 +1,36 @@
-import { useEffect } from 'react'
-import { useForm, useFieldArray, Controller } from 'react-hook-form'
+import { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+
+// icons
 import { HiOutlineLink } from 'react-icons/hi'
 
+// react-hook-form 사용
 const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
-  const { control, handleSubmit, reset } = useForm({
-    defaultValues: {
-      nickName: '',
-      name: '',
-      profileImage: '',
-      bio: '',
-      links: []
-    }
-  })
+  const { register, handleSubmit } = useForm()
+  const [links, setLinks] = useState([])
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'links'
-  })
+  // 초기화 및 상태 업데이트
+  useEffect(() => {
+    if (editMode) {
+      // editMode가 true일 때 profile.links로 links 상태를 설정
+      setLinks(profile.links || [])
+    }
+  }, [editMode, profile.links])
+
+  useEffect(() => {
+    if (profile) {
+      setLinks(profile.links || [])
+    }
+  }, [profile])
 
   const onSubmit = (data) => {
-    setProfile(data)
+    const updatedProfile = {
+      ...profile,
+      ...data,
+      links: links.length ? links : profile.links
+    }
+    setProfile(updatedProfile)
+    localStorage.setItem('profile', JSON.stringify(updatedProfile))
     setEditMode(false)
   }
 
@@ -29,23 +40,29 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
 
   const handleCancelClick = () => {
     setEditMode(false)
-    reset(profile)
+    setLinks(profile.links || [])
+  }
+
+  const handleRemoveClick = (index) => {
+    setLinks(links.filter((_, i) => i !== index))
+  }
+
+  const handleLinkChange = (index, e) => {
+    const updatedLinks = [...links]
+    updatedLinks[index].url = e.target.value
+    setLinks(updatedLinks)
+  }
+
+  const getNextId = () => {
+    if (links.length === 0) return '1'
+    // 현재 최대 id를 숫자로 변환하여 1을 더한 후 문자열로 변환
+    return (Math.max(...links.map((link) => parseInt(link.id, 10))) + 1).toString()
   }
 
   const socialAppend = () => {
-    // REVIEWS - 기본적인 validation 체크
-    append({ url: '' })
+    const newId = getNextId()
+    setLinks([...links, { id: newId, url: '' }])
   }
-
-  useEffect(() => {
-    reset({
-      nickName: profile.nickName || '',
-      name: profile.name || '',
-      profileImage: profile.profileImage || '',
-      bio: profile.bio || '',
-      links: profile.links || []
-    })
-  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,68 +71,58 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
           <div className="flex flex-col items-center space-y-1 text-sm">
             <div className="w-full max-w-xs sm:max-w-sm">
               <label className="block mb-2 text-sm font-bold text-gray-700">Name</label>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field }) => (
-                  <input
-                    {...field}
-                    placeholder="Name"
-                    className="border border-gray-300 focus:outline-none focus:ring-rose-500 focus:border-rose-500 rounded-md p-2 px-3 py-1 mb-2 w-full"
-                  />
-                )}
+              <input
+                id="name"
+                type="text"
+                defaultValue={profile.name}
+                placeholder="Name"
+                className="border border-gray-300 focus:outline-none focus:ring-rose-500 focus:border-rose-500 rounded-md p-2 px-3 py-1 mb-2 w-full"
+                {...register('name')}
               />
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
               <label className="block mb-2 text-sm font-bold text-gray-700">Bio</label>
-              <Controller
-                name="bio"
-                control={control}
-                render={({ field }) => (
-                  <textarea
-                    {...field}
-                    placeholder="Add a bio"
-                    className="border rounded-md h-20 p-2 px-3 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
-                  />
-                )}
+              <textarea
+                id="bio"
+                defaultValue={profile.bio}
+                placeholder="Add a bio"
+                className="border rounded-md h-20 p-2 px-3 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                {...register('bio')}
               />
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
               <label className="block mb-2 text-sm font-bold text-gray-700">Profile Image URL</label>
-              <Controller
-                name="profileImage"
-                control={control}
-                render={({ field }) => (
-                  <input
-                    {...field}
-                    placeholder="Profile Image URL"
-                    className="border border-gray-300 rounded-md p-2 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
-                  />
-                )}
+              <input
+                id="image"
+                type="url"
+                defaultValue={profile.profileImage}
+                placeholder="Profile Image URL"
+                className="border border-gray-300 rounded-md p-2 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                required
+                {...register('image')}
               />
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
               <label className="block mb-2 text-sm font-bold text-gray-700">Social accounts</label>
-              {fields.map((item, index) => (
-                <div key={item.id} className="flex items-center mb-2 space-x-2">
+              {links.map((link, index) => (
+                <div key={link.id} className="flex items-center mb-2 space-x-2">
                   <HiOutlineLink className="text-gray-600 text-lg" />
-                  <Controller
-                    name={`links[${index}].url`}
-                    control={control}
-                    render={({ field }) => (
-                      <input
-                        {...field}
-                        placeholder="Link URL"
-                        className="border rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
-                      />
-                    )}
+                  <input
+                    id={`url-${index}`}
+                    type="url"
+                    value={link.url}
+                    onChange={(e) => handleLinkChange(index, e)}
+                    placeholder="Link URL"
+                    required
+                    className="border rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
                   />
+
                   <button
                     type="button"
-                    onClick={() => remove(index)}
+                    onClick={() => handleRemoveClick(index)}
                     className="text-red-500 rounded-md h-8 w-8 flex items-center justify-center hover:bg-rose-400 hover:text-white duration-100"
                   >
                     X
