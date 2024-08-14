@@ -9,10 +9,9 @@ import NewWrite from '@common/components/NewWrite.jsx'
 
 // pages
 import home from '@pages/home/router.jsx'
-import about from '@pages/about/router.jsx'
-import Project from '@pages/projects/Projects.jsx'
-const DetailPage = lazy(() => import('@pages/about/components/DetailPage.jsx'))
-const AboutDetail = lazy(() => import('@pages/about/components/AboutDetail.jsx'))
+import blog from '@pages/blog/router.jsx'
+const DetailPage = lazy(() => import('@pages/blog/components/DetailPage.jsx'))
+const BlogDetail = lazy(() => import('@pages/blog/components/BlogDetail.jsx'))
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -25,16 +24,11 @@ const router = createBrowserRouter([
         </Suspense>
       </Layout>
     ),
-    children: [...home, ...about],
+    children: [...home, ...blog],
     errorElement: <NotFound />
   },
   {
-    path: '/projects',
-    element: <Project />,
-    errorElement: <NotFound />
-  },
-  {
-    path: 'about/:id/detail/:id',
+    path: 'blog/:id/detail/:id',
     element: (
       <Suspense fallback={<Loading />}>
         <DetailPage />
@@ -43,10 +37,10 @@ const router = createBrowserRouter([
     errorElement: <NotFound />
   },
   {
-    path: 'about/:title',
+    path: 'blog/:title',
     element: (
       <Suspense fallback={<Loading />}>
-        <AboutDetail />
+        <BlogDetail />
       </Suspense>
     ),
     errorElement: <NotFound />
