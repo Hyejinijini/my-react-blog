@@ -24,12 +24,12 @@ const HeaderList = () => {
             </div>
           </li>
 
-          <li className={`py-2 ${location.pathname === '/about' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
+          <li className={`py-2 ${location.pathname === '/blog' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegBookmark className="text-md" />
-              {/* About 링크 */}
-              <Link to="/about">
-                About
+              {/* Blog 링크 */}
+              <Link to="/blog">
+                Blog
                 <span
                   className="badge text-gray-600 font-bold bg-rose-200 ml-2 rounded-full border border-rose-200 text-sm px-1.5
         "
