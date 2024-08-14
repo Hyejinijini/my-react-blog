@@ -7,7 +7,7 @@ import { IoBookOutline } from 'react-icons/io5'
 import { AiOutlineSecurityScan } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
 
-const AboutHeaderList = () => {
+const BlogHeaderList = () => {
   const location = useLocation()
   const { id } = useParams() // URL의 id 파라미터 가져오기
 
@@ -97,4 +97,4 @@ const AboutHeaderList = () => {
   )
 }
 
-export default AboutHeaderList
+export default BlogHeaderList

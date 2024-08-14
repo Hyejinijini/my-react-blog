@@ -6,7 +6,7 @@ import CalendarModal from '@common/components/header/CalendarModal.jsx'
 import BlogTitle from '@common/components/header/BlogTitle.jsx'
 import AboutHeaderList from '@pages/about/components/AboutHeaderList.jsx'
 
-const AboutHeader = () => {
+const BlogHeader = () => {
   return (
     <header className="text-gray-600 bg-rose-50 border-b border-b-rose-200">
       <div className="flex p-4 pb-2 gap-3 items-center">
@@ -32,4 +32,4 @@ const AboutHeader = () => {
   )
 }
 
-export default AboutHeader
+export default BlogHeader

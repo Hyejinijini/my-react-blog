@@ -1,4 +1,4 @@
-const AboutSearch = ({ searchTerm, setSearchTerm }) => {
+const BlogSearch = ({ searchTerm, setSearchTerm }) => {
   const searchHanlder = (e) => {
     setSearchTerm(e.target.value)
   }
@@ -17,4 +17,4 @@ const AboutSearch = ({ searchTerm, setSearchTerm }) => {
   )
 }
 
-export default AboutSearch
+export default BlogSearch

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
-import { useAboutListHook } from '@pages/about/hooks/useDataFetchHooks.js'
-import useFilteredListHook from '@/pages/about/hooks/useFilteredListHook.js'
+import { useAboutListHook } from '@pages/blog/hooks/useDataFetchHooks.js'
+import useFilteredListHook from '@/pages/blog/hooks/useFilteredListHook.js'
 
-const AboutList = ({ searchTerm }) => {
+const BlogList = ({ searchTerm }) => {
   const list = useAboutListHook() // 목록 데이터 가져오기
   const filteredList = useFilteredListHook(searchTerm, list) // 필터링된 목록 사용
 
@@ -41,4 +41,4 @@ const AboutList = ({ searchTerm }) => {
   )
 }
 
-export default AboutList
+export default BlogList

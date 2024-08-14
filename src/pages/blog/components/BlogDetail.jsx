@@ -12,7 +12,7 @@ import SideBar from '@pages/about/components/SideBar.jsx'
 import ReadMe from '@pages/about/components/ReadMe.jsx'
 import Header from '@common/components/header/Header.jsx'
 
-const AboutDetail = () => {
+const BlogDetail = () => {
   const navigate = useNavigate()
   const [list, setList] = useState([])
   const [title, setTitle] = useState('')
@@ -148,4 +148,4 @@ const AboutDetail = () => {
   )
 }
 
-export default AboutDetail
+export default BlogDetail
