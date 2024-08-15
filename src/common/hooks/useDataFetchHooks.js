@@ -9,6 +9,7 @@ export const useRequestHook = (url) => {
   }, [url])
 
   return {
-    state
+    state,
+    setState
   }
 }
