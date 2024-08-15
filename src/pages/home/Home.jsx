@@ -1,7 +1,7 @@
 import React from 'react'
 
 import MetaTags from '@common/components/etc/MetaTags.jsx'
-import ReadMe from '@pages/home/components/ReadMe.jsx'
+import HomeMain from '@pages/home/components/HomeMain.jsx'
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
 
       <div className="max-w-screen-xl w-full mx-auto">
         {/* 메인 콘텐츠 */}
-        <ReadMe />
+        <HomeMain />
       </div>
     </div>
   )

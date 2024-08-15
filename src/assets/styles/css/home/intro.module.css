@@ -1,0 +1,40 @@
+/* intro.module.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animatedText {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animatedText:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.animatedText:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.animatedText:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.animatedText:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.animatedText:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.animatedText:nth-child(6) {
+  animation-delay: 1s;
+}
+.animatedText:nth-child(7) {
+  animation-delay: 1.2s;
+}
+.animatedText:nth-child(8) {
+  animation-delay: 1.4s;
+}
