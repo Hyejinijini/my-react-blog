@@ -17,7 +17,7 @@ const SideBar = () => {
   }
 
   return (
-    <aside>
+    <aside className="-mr-2">
       {/* 프로필 데이터 가져오기 */}
       <ProfileDataFetcher setProfile={setProfile} />
 
@@ -30,20 +30,18 @@ const SideBar = () => {
 
           {/* 프로필 소개란 */}
           <ProfileIntro editMode={editMode} profile={profile} />
+
+          {/* 프로필 소개란 수정폼 */}
+          <SideBarForm profile={profile} editMode={editMode} setEditMode={setEditMode} setProfile={handleSaveProfile} />
+
+          {/* 소셜 링크 */}
+          {!editMode && (
+            <>
+              <hr className="border-1 border-rose-100 mb-6 md:w-64 lg:w-72" />
+              <GoToLink editMode={editMode} profile={profile} />
+            </>
+          )}
         </div>
-      )}
-
-      {/* 프로필 소개란 수정폼 */}
-      {profile && (
-        <SideBarForm profile={profile} editMode={editMode} setEditMode={setEditMode} setProfile={handleSaveProfile} />
-      )}
-
-      {/* 링크 */}
-      {profile && !editMode && (
-        <>
-          <hr className="border-1 border-rose-100 mb-6 md:w-64 lg:w-72" />
-          <GoToLink editMode={editMode} profile={profile} />
-        </>
       )}
     </aside>
   )
