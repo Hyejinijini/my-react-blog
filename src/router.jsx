@@ -5,7 +5,6 @@ import { createBrowserRouter, Outlet } from 'react-router-dom'
 import Layout from '@layouts/Layout.jsx'
 import Loading from '@common/components/etc/Loading.jsx'
 import NotFound from '@common/components/etc/NotFound.jsx'
-import NewWrite from '@common/components/NewWrite.jsx'
 
 // pages
 import home from '@pages/home/router.jsx'
@@ -43,11 +42,6 @@ const router = createBrowserRouter([
         <BlogDetail />
       </Suspense>
     ),
-    errorElement: <NotFound />
-  },
-  {
-    path: '/write',
-    element: <NewWrite />,
     errorElement: <NotFound />
   }
 ])
