@@ -8571,6 +8571,7 @@ __metadata:
     react-hook-form: "npm:^7.52.1"
     react-icons: "npm:^5.2.1"
     react-router-dom: "npm:^6.24.1"
+    react-tooltip: "npm:4.2.21"
     sass: "npm:^1.77.6"
     sort-by: "npm:^1.2.0"
     storybook: "npm:^8.1.11"
@@ -9766,6 +9767,19 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/6d66f3bdb65e1ec79089f80314da97c9a005087a04ee034255a5de129a4c0d9fd0bf99fa7bf642781ac2dc745ca687aae3de082bd8afdd0d117bc953241e15ad
+  languageName: node
+  linkType: hard
+
+"react-tooltip@npm:4.2.21":
+  version: 4.2.21
+  resolution: "react-tooltip@npm:4.2.21"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+    uuid: "npm:^7.0.3"
+  peerDependencies:
+    react: ">=16.0.0"
+    react-dom: ">=16.0.0"
+  checksum: 10c0/8e28b99a97bffa5c9a00f0b5fc139bee13d9ba31ab41ab25a0386a40a01612cabf179a6a4ff7a77e4b930e95181dcb9fd65b02b698c3574d9aab2b6184504f92
   languageName: node
   linkType: hard
 
@@ -11463,6 +11477,15 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: 10c0/02ba649de1b7ca8854bfe20a82f1dfbdda3fb57a22ab4a8972a63a34553cf7aa51bc9081cf7e001b035b88186d23689d69e71b510e610a09a4c66f68aa95b672
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "uuid@npm:7.0.3"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 10c0/2eee5723b0fcce8256f5bfd3112af6c453b5471db00af9c3533e3d5a6e57de83513f9a145a570890457bd7abf2c2aa05797291d950ac666e5a074895dc63168b
   languageName: node
   linkType: hard
 
