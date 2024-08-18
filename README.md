@@ -1,5 +1,6 @@
 # My React Blog - HYEHYE
-이 프로젝트는 리액트(React)를 사용하여 개발된 개인 블로그입니다. Github 디자인을 참고하여 UI를 구현했습니다.
+이 프로젝트는 리액트(React)를 사용하여 개발된 개인 블로그입니다. <br />
+Github 디자인을 참고하여 UI를 구현했습니다.
 
 ## 환경
 - Node.js v20.14.0+
@@ -16,18 +17,25 @@
 - **MSW(Mock Service Worker)**: API 요청을 목킹하여 외부 API 와의 상호작용을 시뮬레이션할 수 있게 해주는 도구입니다.
 
 ## 실행 방법
-1. 레파지토리 클론:
-    ```
+1. 레파지토리 클론
+    ```bash
     git clone <repository-url>
     cd <project-directory>
     ```
 
-2. 의존성 설치:
-    ```
+2. 의존성 설치
+    ```bash
     yarn install
+    # or
+    yarn
     ```
 
-3. 개발 서버 시작:
-    ```
+3. 개발 서버 시작
+    ```bash
     yarn dev
+    ```
+
+4. 개발 빌드
+    ```bash
+    yarn build
     ```
