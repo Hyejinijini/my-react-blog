@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getRequest } from '@/api/apiClient.js'
-import AboutHeader from '@pages/about/components/AboutHeader.jsx'
+import BlogHeader from '@pages/about/components/BlogHeader.jsx'
 import { DETAIL_PAGE_URL } from '@api/keys/about/url.js'
 
 import { FaFolder } from 'react-icons/fa'
@@ -70,7 +70,7 @@ const DetailPage = () => {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <AboutHeader />
+      <BlogHeader />
       <div className="flex flex-1">
         {/* aside 부분 */}
         <aside className="w-64 border-r border-rose-200 flex-shrink-0 h-full bg-white">
