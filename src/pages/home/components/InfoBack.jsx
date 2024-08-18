@@ -123,7 +123,9 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
                 <div className={styles.profileIcon}>
                   <span className="text-lg font-bold">M</span>
                 </div>
-                <span className="text-sm text-gray-800">메일: {profileData.email}</span>
+                <span className="text-sm text-gray-800">
+                  메일: <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
+                </span>
               </li>
               <li className={styles.profileItem}>
                 <div className={styles.profileIcon}>

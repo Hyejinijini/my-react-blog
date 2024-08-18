@@ -19,22 +19,20 @@ const ProfileDataFetcher = ({ setProfile }) => {
     const loadProfile = () => {
       // 로컬스토리지에서 데이터 가져오기
       const storedProfile = localStorage.getItem('profile')
-      // 로컬스토리지에 데이터가 있을 경우에는 로컬스토리지에서 데이터를 가져오고
       if (storedProfile) {
         setProfile(JSON.parse(storedProfile))
-      } else {
-        // 로컬스토리지에 데이터가 없을 경우에는 API 에서 데이터를 가져온다.
-        if (apiProfile) {
-          setProfile(apiProfile)
-          localStorage.setItem('profile', JSON.stringify(apiProfile))
-        }
+        return
       }
-      setLoading(false)
+      // 로컬스토리지에 데이터가 없을 경우에는 API 에서 데이터를 가져온다.
+      if (apiProfile) {
+        setProfile(apiProfile)
+        localStorage.setItem('profile', JSON.stringify(apiProfile))
+      }
     }
 
     loadProfile()
-  }, [apiProfile, setProfile])
-
+    setLoading(false)
+  }, [apiProfile])
   if (loading) return <Loading />
 
   // 해당 컴포넌트는 아무런 UI 를 렌더링할 필요가 없으므로 null 을 return 하도록 했음.

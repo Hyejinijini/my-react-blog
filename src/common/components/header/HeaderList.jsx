@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useRequestHook } from '@common/hooks/useDataFetchHooks.js'
+import { useRequestListHook } from '@common/hooks/useDataFetchHooks.js'
 
 // data URL
 import { ABOUT_LIST_URL } from '@api/keys/about/url.js'
@@ -17,7 +17,7 @@ const HeaderList = () => {
   const url = ABOUT_LIST_URL
 
   // custom hook 사용
-  const { state: items } = useRequestHook(url)
+  const { state: items } = useRequestListHook(url)
 
   return (
     <div className="px-4">
@@ -55,7 +55,7 @@ const HeaderList = () => {
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegCalendarAlt className="text-lg" />
               {/* Calendar 링크 */}
-              <Link to="/">Calendar</Link>
+              <Link to="/calendar">Calendar</Link>
             </div>
           </li>
         </ul>
