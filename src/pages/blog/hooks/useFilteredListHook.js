@@ -9,9 +9,7 @@ const useFilteredListHook = (searchTerm, list) => {
       const fList = list.filter(
         (item) =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.skill.toLowerCase().includes(searchTerm.toLowerCase())
+          item.content.toLowerCase().includes(searchTerm.toLowerCase())
       )
       setFilteredList(fList)
     }
