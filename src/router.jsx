@@ -9,6 +9,7 @@ import NotFound from '@common/components/etc/NotFound.jsx'
 // pages
 import home from '@pages/home/router.jsx'
 import blog from '@pages/blog/router.jsx'
+import calendar from '@pages/calendar/router.jsx'
 const DetailPage = lazy(() => import('@pages/blog/components/DetailPage.jsx'))
 const BlogDetail = lazy(() => import('@pages/blog/components/BlogDetail.jsx'))
 const BlogCreate = lazy(() => import('@pages/blog/components/BlogCreate.jsx'))
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
         </Suspense>
       </Layout>
     ),
-    children: [...home, ...blog],
+    children: [...home, ...blog, ...calendar],
     errorElement: <NotFound />
   },
   {
