@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ABOUT_README_URL } from '@api/keys/about/url.js'
 import { getRequest } from '@/api/apiClient.js'
 import { GoGear } from 'react-icons/go'
-import SideBarList from '@pages/about/components/SideBarList.jsx'
+import SideBarList from '@pages/blog/components/SideBarList.jsx'
 
 const SideBar = () => {
   const [about, setAbout] = useState(null)
