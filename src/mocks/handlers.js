@@ -35,16 +35,12 @@ export const handlers = [
       {
         id: 1,
         title: 'personal-things',
-        content: '개인적인 것들',
-        label: 'private',
-        skill: 'Html'
+        content: '개인적인 것들'
       },
       {
         id: 2,
         title: 'hobbies-and-interests',
-        content: '취미와 관심있는 것들',
-        label: 'public',
-        skill: 'Html'
+        content: '취미와 관심있는 것들'
       }
     ])
   }),
