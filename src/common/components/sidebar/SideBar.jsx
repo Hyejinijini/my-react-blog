@@ -25,12 +25,13 @@ const SideBar = () => {
       그래서 profile 이 null 이 아닌 경우에만 컴포넌트가 렌더링되도록 조건을 추가한 것이다. profile 데이터가 로드되기 전에 컴포넌트들이 렌더링 되는것을 막기 위함이다.*/}
       {profile && (
         <div className="mt-2 sm:ml-4 sm:mt-2 sm:mr-4 md:ml-0 ml-4 mr-4">
-          {/* 프로필 이미지 */}
-          <ProfileImage profile={profile} />
+          <div className="flex flex-row md:flex-col lg:flex-col xl:felx-col">
+            {/* 프로필 이미지 */}
+            <ProfileImage profile={profile} />
 
-          {/* 프로필 소개란 */}
-          <ProfileIntro editMode={editMode} profile={profile} />
-
+            {/* 프로필 소개란 */}
+            <ProfileIntro editMode={editMode} profile={profile} />
+          </div>
           {/* 프로필 소개란 수정폼 */}
           <SideBarForm profile={profile} editMode={editMode} setEditMode={setEditMode} setProfile={handleSaveProfile} />
 
