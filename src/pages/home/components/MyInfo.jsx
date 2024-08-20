@@ -19,7 +19,7 @@ const MyInfo = () => {
   console.log('Rendering SelfIntro: isFlipped =', isFlipped) // 디버깅 로그
 
   return (
-    <div className="relative w-full h-96 shadow-xl shadow-rose-100">
+    <div className="relative w-full h-96">
       {/* 애니메이션이 적용된 div */}
       <motion.div
         className={`${styles.card} ${isFlipped ? styles.cardFlipped : ''}`}
