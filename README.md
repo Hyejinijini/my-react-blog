@@ -1,6 +1,7 @@
 # My React Blog - HYEHYE
-이 프로젝트는 리액트(React)를 사용하여 개발된 개인 블로그입니다. <br />
-Github 디자인을 참고하여 UI를 구현했습니다.
+이 프로젝트는 개인 블로그를 개발하기 위한 학습 목적으로 시작되었습니다.<br />
+React를 이용한 컴포넌트 기반 개발 방식과 Tailwind CSS를 사용한 유연한 스타일링을 익히기 위해 제작되었습니다.<br />
+Github 디자인을 참고하여 UI를 구현했습니다. 
 
 ## 환경
 - Node.js v20.14.0+
@@ -48,3 +49,6 @@ Github 디자인을 참고하여 UI를 구현했습니다.
     ```bash
     yarn build
     ```
+
+## 향후 계획
+- **TodoList 기능**: 캘린더에 TodoList 기능 추가
