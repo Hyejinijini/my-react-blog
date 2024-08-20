@@ -72,7 +72,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
       {/* 프로필 정보 */}
       <div className="w-full mb-4">
         <div className="flex items-center justify-between mb-4">
-          <div className="text-lg font-bold text-rose-600">HYEHYE / 소개</div>
+          <div className="text-lg font-bold text-rose-600">HYEHYE / 프로필</div>
           <div className="flex items-center">
             <FaArrowLeft className={`${styles.arrowIcon} cursor-pointer text-rose-600`} onClick={handleCardClick} />
             <button onClick={isEditing ? handleSaveClick : handleEditClick} className={`ml-4`}>
