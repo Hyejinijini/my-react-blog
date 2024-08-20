@@ -4,6 +4,11 @@ import { motion } from 'framer-motion'
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs } from 'react-icons/fa'
 import { SiTailwindcss } from 'react-icons/si'
 
+import reactHookIcon from '@assets/images/react-hook-form-icon.svg'
+import zustandIcon from '@assets/images/zustand-icon.svg'
+import axiosIcon from '@assets/images/axios-icon.svg'
+import storyBookIcon from '@assets/images/storybook-icon.svg'
+
 const TechStack = () => {
   return (
     <div className="flex flex-wrap justify-center space-x-8 py-8 max-w-4xl mx-auto gap-1">
@@ -92,7 +97,8 @@ const TechStack = () => {
         transition={{ delay: 1.4, type: 'spring', stiffness: 100 }}
       >
         <img
-          src="/src/assets/images/react-hook-form-icon.svg"
+          src={reactHookIcon}
+          alt="react-hook-form"
           className="h-16 w-16 text-green-500 hover:scale-110 duration-200 z-0"
         />
         <span className="absolute bottom-[-68px] left-1/2 transform -translate-x-1/2 items-center justify-center hidden group-hover:flex z-20">
@@ -107,10 +113,7 @@ const TechStack = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6, type: 'spring', stiffness: 100 }}
       >
-        <img
-          src="/src/assets/images/zustand-icon.svg"
-          className="h-16 w-16 text-green-500 hover:scale-110 duration-200 z-0"
-        />
+        <img src={zustandIcon} alt="zustand" className="h-16 w-16 text-green-500 hover:scale-110 duration-200 z-0" />
         <span className="absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 items-center justify-center hidden group-hover:flex z-20">
           <span className="relative p-2 px-4 text-sm leading-none text-white bg-rose-600 shadow-lg rounded-md">
             Zustand
@@ -123,10 +126,7 @@ const TechStack = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.8, type: 'spring', stiffness: 100 }}
       >
-        <img
-          src="/src/assets/images/axios-icon.svg"
-          className="h-16 w-16 text-green-500 hover:scale-110 duration-200 z-0"
-        />
+        <img src={axiosIcon} alt="Axios" className="h-16 w-16 text-green-500 hover:scale-110 duration-200 z-0" />
         <span className="absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 items-center justify-center hidden group-hover:flex z-20">
           <span className="relative p-2 px-4 text-sm leading-none text-white bg-rose-600 shadow-lg rounded-md">
             Axios
@@ -140,7 +140,8 @@ const TechStack = () => {
         transition={{ delay: 2.0, type: 'spring', stiffness: 100 }}
       >
         <img
-          src="/src/assets/images/storybook-icon.svg"
+          src={storyBookIcon}
+          alt="story-book"
           className="h-16 w-16 text-green-500 hover:scale-110 duration-200 z-0"
         />
         <span className="absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 items-center justify-center hidden group-hover:flex z-20">

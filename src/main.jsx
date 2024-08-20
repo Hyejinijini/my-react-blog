@@ -8,16 +8,14 @@ import router from '@/router.jsx'
 import '@assets/styles/css/index.css'
 
 async function enableMocking() {
-  if (process.env.NODE_ENV !== 'development') {
-    return
-  }
-
+  // if (process.env.NODE_ENV !== 'development') {
+  //   return
+  // }
   const { worker } = await import('./mocks/browser.js')
 
   return worker.start({
     onUnhandledRequest: (request, print) => {
       if (!request.url.includes('/api/')) {
-        console.log('/api/ 가 포함되지 않은 요청 url', request.url)
         return
       }
 
@@ -26,34 +24,7 @@ async function enableMocking() {
   })
 }
 
-function Main() {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000) // 3초 후 로딩 종료
-    return () => clearTimeout(timer)
-  }, [])
-
-  return (
-    <AnimatePresence>
-      {loading ? (
-        <motion.div
-          key="loading"
-          className="loading-screen bg-black flex justify-center items-center h-screen"
-          initial={{ opacity: 1, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.1, transition: { duration: 1 } }} // 자연스럽게 흐려지면서 사라짐
-        >
-          <TypingText />
-        </motion.div>
-      ) : (
-        <RouterProvider router={router} />
-      )}
-    </AnimatePresence>
-  )
-}
-
-function TypingText() {
+const TypingText = () => {
   const [animationStage, setAnimationStage] = useState('typing') // 애니메이션 단계 상태
   const text = 'HYEHYE'
   const letters = text.split('')
@@ -92,6 +63,33 @@ function TypingText() {
         )
       })}
     </motion.div>
+  )
+}
+
+const Main = () => {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000) // 3초 후 로딩 종료
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <AnimatePresence>
+      {loading ? (
+        <motion.div
+          key="loading"
+          className="loading-screen bg-black flex justify-center items-center h-screen"
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.1, transition: { duration: 1 } }} // 자연스럽게 흐려지면서 사라짐
+        >
+          <TypingText />
+        </motion.div>
+      ) : (
+        <RouterProvider router={router} />
+      )}
+    </AnimatePresence>
   )
 }
 

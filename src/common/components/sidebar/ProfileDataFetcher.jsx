@@ -24,7 +24,7 @@ const ProfileDataFetcher = ({ setProfile }) => {
         return
       }
       // 로컬스토리지에 데이터가 없을 경우에는 API 에서 데이터를 가져온다.
-      if (apiProfile) {
+      if (typeof apiProfile === 'object') {
         setProfile(apiProfile)
         localStorage.setItem('profile', JSON.stringify(apiProfile))
       }
