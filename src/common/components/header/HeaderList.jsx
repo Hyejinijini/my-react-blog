@@ -1,8 +1,4 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useRequestListHook } from '@common/hooks/useDataFetchHooks.js'
-
-// data URL
-import { ABOUT_LIST_URL } from '@api/keys/about/url.js'
 
 // icons
 import { AiOutlineHome } from 'react-icons/ai'
@@ -12,12 +8,6 @@ import { FaRegCalendarAlt } from 'react-icons/fa'
 const HeaderList = () => {
   // 현재 URL 정보를 가져오기 위해 useLocation 사용
   const location = useLocation()
-
-  // data URL
-  const url = ABOUT_LIST_URL
-
-  // custom hook 사용
-  const { state: items } = useRequestListHook(url)
 
   return (
     <div className="px-4">
@@ -33,24 +23,15 @@ const HeaderList = () => {
             </div>
           </li>
 
-          {/* 현재 URL 이 "blog" 일 때(즉, Blog 일 때) css 설정 */}
-          <li className={`py-2 ${location.pathname === '/blog' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
+          {/* 현재 URL 이 "guestbook" 일 때(즉, Guestbook 일 때) css 설정 */}
+          <li className={`py-2 ${location.pathname === '/guestbook' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegBookmark className="text-md" />
-              {/* Blog 링크 */}
-              <Link to="/blog">
-                Blog
-                <span
-                  className="badge text-gray-600 font-bold bg-rose-200 ml-2 rounded-full border border-rose-200 text-sm px-1.5
-        "
-                >
-                  {/* custom hook 으로 가져온 data 의 길이를 이용해서 배지느낌 만들기 */}
-                  {items.length}
-                </span>
-              </Link>
+              {/* Guestbook 링크 */}
+              <Link to="/guestbook">Guestbook</Link>
             </div>
           </li>
-          {/* 현재 URL 이 "/" 일 때(즉, home 일 때) css 설정 */}
+          {/* 현재 URL 이 "/calendar" 일 때(즉, Calendar 일 때) css 설정 */}
           <li className={`py-2 ${location.pathname === '/calendar' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegCalendarAlt className="text-lg" />
