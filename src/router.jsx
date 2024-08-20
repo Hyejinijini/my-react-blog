@@ -8,11 +8,8 @@ import NotFound from '@common/components/etc/NotFound.jsx'
 
 // pages
 import home from '@pages/home/router.jsx'
-import blog from '@pages/blog/router.jsx'
-import calendar from '@pages/calendar/router.jsx'
-const DetailPage = lazy(() => import('@pages/blog/components/DetailPage.jsx'))
-const BlogDetail = lazy(() => import('@pages/blog/components/BlogDetail.jsx'))
-const BlogCreate = lazy(() => import('@pages/blog/components/BlogCreate.jsx'))
+import guestbook from '@pages/guestbook/router.jsx'
+const Calendar = lazy(() => import('@pages/calendar/Calendar.jsx'))
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -25,32 +22,15 @@ const router = createBrowserRouter([
         </Suspense>
       </Layout>
     ),
-    children: [...home, ...blog, ...calendar],
+    children: [...home, ...guestbook],
     errorElement: <NotFound />
   },
+
   {
-    path: 'blog/:id/detail/:id',
+    path: 'calendar',
     element: (
       <Suspense fallback={<Loading />}>
-        <DetailPage />
-      </Suspense>
-    ),
-    errorElement: <NotFound />
-  },
-  {
-    path: 'blog/:title',
-    element: (
-      <Suspense fallback={<Loading />}>
-        <BlogDetail />
-      </Suspense>
-    ),
-    errorElement: <NotFound />
-  },
-  {
-    path: 'blog/create',
-    element: (
-      <Suspense fallback={<Loading />}>
-        <BlogCreate />
+        <Calendar />
       </Suspense>
     ),
     errorElement: <NotFound />
