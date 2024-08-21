@@ -5,11 +5,17 @@ const CommentHeader = ({ comment, setEditingIndex, setEditComment, index, setCom
   return (
     <>
       <div className="flex items-center justify-between p-2 border-b border-rose-200">
+        {/* 댓글 작성자와 타임스탬프를 표시하는 영역 */}
         <div className="flex items-center space-x-2">
+          {/* 댓글 작성자의 이름 */}
           <span className="text-base font-semibold">{comment.user}</span>
+          {/* 댓글의 작성 시간 */}
           <span className="text-gray-500 text-sm">{comment.timestamp}</span>
         </div>
+
+        {/* 댓글 수정 및 삭제 버튼을 포함하는 영역 */}
         <div className="flex space-x-2">
+          {/* CommentEditDelete 컴포넌트를 사용하여 댓글 수정 및 삭제 기능 제공 */}
           <CommentEditDelete
             setEditingIndex={setEditingIndex}
             setEditComment={setEditComment}
