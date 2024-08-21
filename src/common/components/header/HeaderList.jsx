@@ -14,28 +14,29 @@ const HeaderList = () => {
       {/* 네비게이션 링크들 */}
       <nav>
         <ul className="flex text-base font-medium gap-2">
-          {/* 현재 URL 이 "/" 일 때(즉, home 일 때) css 설정 */}
+          {/* Home 링크 */}
           <li className={`py-2 ${location.pathname === '/' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <AiOutlineHome className="text-lg" />
-              {/* Home 링크 */}
+              {/* Home 링크를 클릭하면 "/" 경로로 이동합니다. */}
               <Link to="/">Home</Link>
             </div>
           </li>
 
-          {/* 현재 URL 이 "guestbook" 일 때(즉, Guestbook 일 때) css 설정 */}
+          {/* Guestbook 링크 */}
           <li className={`py-2 ${location.pathname === '/guestbook' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegBookmark className="text-md" />
-              {/* Guestbook 링크 */}
+              {/* Guestbook 링크를 클릭하면 "/guestbook" 경로로 이동합니다. */}
               <Link to="/guestbook">Guestbook</Link>
             </div>
           </li>
-          {/* 현재 URL 이 "/calendar" 일 때(즉, Calendar 일 때) css 설정 */}
+
+          {/* Calendar 링크 */}
           <li className={`py-2 ${location.pathname === '/calendar' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
             <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegCalendarAlt className="text-lg" />
-              {/* Calendar 링크 */}
+              {/* Calendar 링크를 클릭하면 "/calendar" 경로로 이동합니다. */}
               <Link to="/calendar">Calendar</Link>
             </div>
           </li>

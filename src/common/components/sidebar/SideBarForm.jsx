@@ -14,30 +14,32 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
   const [links, setLinks] = useState([])
 
   // 초기화
+  // editMode가 true일 때 profile.links로 links 상태를 설정
+  // 즉, 수정 폼이 활성화될 때 프로필의 소셜 계정 링크를 links 상태로 설정
   useEffect(() => {
     if (editMode) {
-      // editMode가 true일 때 profile.links로 links 상태를 설정 즉, 수정 폼이 활성화될 때 프로필의 소셜 계정 링크를 links 상태로 설정한다.
       setLinks(profile.links || [])
     }
   }, [editMode, profile.links])
 
   // 업데이트
+  // profile 이 변경되면 profile.links 의 상태를 links 상태로 설정
   useEffect(() => {
     if (profile) {
-      // profile 이 변경되면 profile.links 의 상태를 links 상태로 설정한다.
       setLinks(profile.links || [])
     }
   }, [profile])
 
+  // 폼 제출 처리 함수
   const onSubmit = (data) => {
-    // 폼 data 를 profile 객체에 병합하여 업데이트 하고 로컬스토리지에 프로필 데이터를 저장한다.
+    // 폼 data 를 profile 객체에 병합하여 업데이트 하고, 로컬스토리지에 프로필 데이터를 저장
     const updatedProfile = {
       ...profile,
       ...data,
       links: links.length ? links : profile.links
     }
     setProfile(updatedProfile)
-    localStorage.setItem('profile', JSON.stringify(updatedProfile))
+    localStorage.setItem('profile', JSON.stringify(updatedProfile)) // 로컬스토리지에 저장
 
     // 수정 폼 비활성화
     setEditMode(false)
@@ -67,9 +69,10 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
     setLinks(updatedLinks)
   }
 
+  // 다음 ID 생성
   const getNextId = () => {
     if (links.length === 0) return '1'
-    // 현재 링크들 중 가장 큰 id 값을 찾고, 1을 더하여 새 id 를 생성한 후 문자열로 변환하여 반환된다.
+    // 현재 링크들 중 가장 큰 id 값을 찾고, 1을 더하여 새 id 를 생성한 후 문자열로 변환하여 반환
     return (Math.max(...links.map((link) => parseInt(link.id, 10))) + 1).toString()
   }
 
