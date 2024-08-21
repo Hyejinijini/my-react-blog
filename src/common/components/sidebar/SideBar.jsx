@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+// components
 import ProfileDataFetcher from '@common/components/sidebar/ProfileDataFetcher.jsx'
 import ProfileImage from '@common/components/sidebar/ProfileImage.jsx'
 import ProfileIntro from '@common/components/sidebar/ProfileIntro.jsx'
