@@ -47,7 +47,7 @@ const Guestbook = () => {
         />
 
         {/* 새로운 댓글을 추가하는 폼 컴포넌트 */}
-        <CommentForm setComments={setComments} />
+        <CommentForm setComments={setComments} commentsPerPage={commentsPerPage} setCurrentPage={setCurrentPage} />
       </div>
 
       {/* 페이지네이션 컴포넌트 */}
