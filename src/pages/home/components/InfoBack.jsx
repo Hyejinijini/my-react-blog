@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 
 // icons
@@ -9,6 +10,8 @@ import { FiSave, FiEdit2 } from 'react-icons/fi'
 import styles from '@assets/styles/css/home/selfInfo.module.css'
 
 const InfoBack = ({ isFlipped, handleCardClick }) => {
+  // react-hook-form 사용
+  const { register, handleSubmit } = useForm()
   const [isEditing, setIsEditing] = useState(false)
 
   // 프로필 데이터
@@ -20,7 +23,10 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
   })
 
   useEffect(() => {
+    // 로컬스토리지에서 저장된 프로필데이터를 가져옴
     const savedData = JSON.parse(localStorage.getItem('profileData'))
+
+    // 저장된 데이터가 있으면 상태로 설정, 없으면 기본 프로필 데이터를 사용
     if (savedData) {
       setProfileData(savedData)
     } else {
@@ -33,18 +39,28 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
     }
   }, [])
 
-  const handleEditClick = () => setIsEditing(true)
-
-  const handleSaveClick = () => {
-    localStorage.setItem('profileData', JSON.stringify(profileData))
+  // 폼 제출 시 호출되는 함수
+  const onSubmit = (data) => {
+    setProfileData(data)
+    localStorage.setItem('profileData', JSON.stringify(data)) // 로컬스토리지에 데이터 저장
     setIsEditing(false)
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setProfileData({ ...profileData, [name]: value })
+  // 수정 폼 활성화 함수
+  const handleEditClick = () => setIsEditing(true)
+
+  // 프로필 저장 및 수정 폼 비활성화 함수
+  const handleSaveClick = () => {
+    handleSubmit(onSubmit)()
   }
 
+  // 입력 필드 값 변경 시 호출되는 함수
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setProfileData({ ...profileData, [name]: value }) // 입력된 값으로 profileData 상태를 업데이트
+  }
+
+  // 필드별로 아이콘을 렌더링하는 함수
   const renderProfileIcon = (key) => {
     switch (key) {
       case 'name':
@@ -71,10 +87,16 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
     >
       {/* 프로필 정보 */}
       <div className="w-full mb-4">
+        {/* 상단 바: 타이틀과 아이콘 */}
         <div className="flex items-center justify-between mb-4">
+          {/* 타이틀 */}
           <div className="text-lg font-bold text-rose-600">HYEHYE / 프로필</div>
+
+          {/* 아이콘과 수정 버튼 */}
           <div className="flex items-center">
             <FaArrowLeft className={`${styles.arrowIcon} cursor-pointer text-rose-600`} onClick={handleCardClick} />
+
+            {/* 수정/저장 버튼 */}
             <button onClick={isEditing ? handleSaveClick : handleEditClick} className={`ml-4`}>
               {isEditing ? (
                 <FiSave className="hover:text-rose-500 duration-200 hover:scale-110" />
@@ -85,57 +107,65 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
           </div>
         </div>
 
-        {isEditing ? (
-          <div className="border-t border-rose-200 p-1.5">
-            <ul className="space-y-4">
-              {Object.keys(profileData).map((key) => (
-                <li key={key} className={styles.profileItem}>
+        {/* 프로필 데이터 폼 */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {isEditing ? (
+            <div className="border-t border-rose-200 p-1.5">
+              <ul className="space-y-4">
+                {Object.keys(profileData).map((key) => (
+                  <li key={key} className={styles.profileItem}>
+                    {/* 필드 아이콘 */}
+                    <div className={styles.profileIcon}>
+                      <span className="text-lg font-bold p-4">{renderProfileIcon(key)}</span>
+                    </div>
+
+                    {/* 입력 필드 */}
+                    <input
+                      type="text"
+                      name={key}
+                      {...register(key)} // register 함수로 필드 등록
+                      defaultValue={profileData[key]}
+                      onChange={handleChange}
+                      className="text-sm text-gray-800 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            // 수정 모드가 아닐 때 프로필 데이터 표시
+            <div className="p-1.5 border-t border-rose-200">
+              <ul className="space-y-4">
+                <li className={styles.profileItem}>
                   <div className={styles.profileIcon}>
-                    <span className="text-lg font-bold p-4">{renderProfileIcon(key)}</span>
+                    <span className="text-lg font-bold">N</span>
                   </div>
-                  <input
-                    type="text"
-                    name={key}
-                    value={profileData[key]}
-                    onChange={handleChange}
-                    className="text-sm text-gray-800 w-full p-2 border border-gray-300 rounded-lg"
-                  />
+                  <span className="text-sm text-gray-800">이름: {profileData.name}</span>
                 </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <div className="p-1.5 border-t border-rose-200">
-            <ul className="space-y-4">
-              <li className={styles.profileItem}>
-                <div className={styles.profileIcon}>
-                  <span className="text-lg font-bold">N</span>
-                </div>
-                <span className="text-sm text-gray-800">이름: {profileData.name}</span>
-              </li>
-              <li className={styles.profileItem}>
-                <div className={styles.profileIcon}>
-                  <span className="text-lg font-bold">B</span>
-                </div>
-                <span className="text-sm text-gray-800">생년월일: {profileData.birthDate}</span>
-              </li>
-              <li className={styles.profileItem}>
-                <div className={styles.profileIcon}>
-                  <span className="text-lg font-bold">M</span>
-                </div>
-                <span className="text-sm text-gray-800">
-                  메일: <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
-                </span>
-              </li>
-              <li className={styles.profileItem}>
-                <div className={styles.profileIcon}>
-                  <span className="text-lg font-bold">P</span>
-                </div>
-                <span className="text-sm text-gray-800">번호: {profileData.phone}</span>
-              </li>
-            </ul>
-          </div>
-        )}
+                <li className={styles.profileItem}>
+                  <div className={styles.profileIcon}>
+                    <span className="text-lg font-bold">B</span>
+                  </div>
+                  <span className="text-sm text-gray-800">생년월일: {profileData.birthDate}</span>
+                </li>
+                <li className={styles.profileItem}>
+                  <div className={styles.profileIcon}>
+                    <span className="text-lg font-bold">M</span>
+                  </div>
+                  <span className="text-sm text-gray-800 hover:underline hover:text-rose-400">
+                    메일: <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
+                  </span>
+                </li>
+                <li className={styles.profileItem}>
+                  <div className={styles.profileIcon}>
+                    <span className="text-lg font-bold">P</span>
+                  </div>
+                  <span className="text-sm text-gray-800">번호: {profileData.phone}</span>
+                </li>
+              </ul>
+            </div>
+          )}
+        </form>
       </div>
     </motion.div>
   )
