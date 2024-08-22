@@ -31,8 +31,9 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
   }, [profile])
 
   // 폼 제출 처리 함수
+  // 폼 제출 시 호출되며, 폼 데이터를 받아 profile를 업데이트하고 수정 모드를 비활성화함
   const onSubmit = (data) => {
-    // 폼 data 를 profile 객체에 병합하여 업데이트 하고, 로컬스토리지에 프로필 데이터를 저장
+    // 기존 profile 객체에 폼 데이터를 병합하여 새로운 객체를 만듦
     const updatedProfile = {
       ...profile,
       ...data,
