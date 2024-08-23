@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRequestHook } from '@common/hooks/useDataFetchHooks.js'
 
 // data URL
-import { PROFILE_URL } from '@api/keys/home/url.js'
+import { PROFILE_URL } from '@api/keys/sidebar/url.js'
 
 // common
 import Loading from '@common/components/etc/Loading.jsx'
