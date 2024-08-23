@@ -8,12 +8,15 @@ import CommentHeader from '@pages/guestbook/components/CommentHeader.jsx'
 import CommentEditForm from '@pages/guestbook/components/CommentEditForm.jsx'
 
 const CommentSection = ({ comments, setComments, currentPage, commentsPerPage }) => {
+  // 현재 수정 중인 댓글의 인덱스를 상태로 관리
   const [editingIndex, setEditingIndex] = useState(null)
+
+  // 수정할 댓글의 내용을 상태로 관리
   const [editComment, setEditComment] = useState('')
 
   // 페이지별로 댓글을 분리
-  const startIndex = (currentPage - 1) * commentsPerPage // 현재 페이지의 시작 인덱스
-  const endIndex = startIndex + commentsPerPage // 현재 페이지의 끝 인덱스
+  const startIndex = (currentPage - 1) * commentsPerPage // 현재 페이지의 시작 인덱스 계산
+  const endIndex = startIndex + commentsPerPage // 현재 페이지의 끝 인덱스 계산
   const currentComments = comments.slice(startIndex, endIndex) // 현재 페이지에 맞는 댓글만 추출
 
   return (
@@ -44,7 +47,6 @@ const CommentSection = ({ comments, setComments, currentPage, commentsPerPage })
                       index={index}
                       comment={comment}
                       comments={comments}
-                      setEditComment={setEditComment}
                       editComment={editComment}
                       setComments={setComments}
                       setEditingIndex={setEditingIndex}
