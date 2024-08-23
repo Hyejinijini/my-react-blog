@@ -2,9 +2,10 @@ import React from 'react'
 
 const EventList = ({ events, handleToggleCompleted }) => (
   <div>
+    {/* events 배열을 순회하며 각각의 이벤트를 표시 */}
     {events.map((event) => (
       <div key={event.id} className="event-item">
-        {/* 체크박스: 이벤트의 완료 상태를 표시하고, 변경 시 상태를 토글하는 함수 호출 */}
+        {/* 체크박스: 이벤트의 완료 상태를 표시하고, 변경 시 상태를 변경하는 함수 호출 */}
         <input
           type="checkbox"
           checked={event.completed} // 이벤트가 완료된 상태인지 체크

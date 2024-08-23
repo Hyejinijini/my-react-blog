@@ -3,6 +3,10 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
+// css
+// 달력의 스타일을 설정
+import '@assets/styles/css/calendar/calendar.css'
+
 // commons
 import Header from '@common/components/header/Header.jsx'
 import Footer from '@common/components/footer/Footer.jsx'
@@ -17,8 +21,9 @@ const Calendar = () => {
   const [events, setEvents] = useState(() => {
     const storedEvents = localStorage.getItem('events')
     return storedEvents
-      ? JSON.parse(storedEvents)
+      ? JSON.parse(storedEvents) // 로컬스토리지에서 저장된 이벤트를 불러옴
       : [
+          // 로컬스토리지에 저장된 이벤트가 없을 경우 기본 이벤트를 설정
           { title: '알바', date: '2024-08-20', completed: false, id: '1', color: '#fecdd3' },
           { title: '알바', date: '2024-08-21', completed: false, id: '2', color: '#fecdd3' },
           { title: '알바', date: '2024-08-22', completed: false, id: '3', color: '#fecdd3' },
@@ -28,21 +33,21 @@ const Calendar = () => {
         ]
   })
 
-  // 새 이벤트 입력 상태
+  // 새 이벤트 입력 상태를 관리
   const [newEvent, setNewEvent] = useState({
     title: '',
     date: '',
     color: '#000000'
   })
 
-  // 선택된 이벤트 상태
+  // 선택된 이벤트 상태를 관리
   const [selectedEvent, setSelectedEvent] = useState(null)
 
-  // 모달 표시 상태
+  // 모달 표시 상태를 관리
   const [showModal, setShowModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
 
-  // events 상태가 변경될 때마다 로컬스토리지에 저장
+  // events 상태가 변경될 때마다 로컬스토리지에 이벤트를 저장
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events))
   }, [events])
@@ -51,7 +56,7 @@ const Calendar = () => {
   const handleDateClick = (info) => {
     setNewEvent((prevNewEvent) => ({
       ...prevNewEvent,
-      date: info.dateStr
+      date: info.dateStr // 클릭한 날짜를 새 이벤트 날짜로 설정
     }))
     setShowModal(true)
   }
@@ -68,25 +73,10 @@ const Calendar = () => {
     setShowEditModal(true)
   }
 
-  // 새 이벤트 입력 필드의 값이 변경될 때 호출
-  const handleInputChange = (e) => {
-    setNewEvent({
-      ...newEvent,
-      title: e.target.value
-    })
-  }
-
-  // 새 이벤트 색상 선택기가 변경될 때 호출
-  const handleColorChange = (e) => {
-    setNewEvent({
-      ...newEvent,
-      color: e.target.value
-    })
-  }
-
   // 새 이벤트 추가 버튼 클릭 시 호출
-  const handleAddEvent = () => {
-    const { title, date, color } = newEvent
+  const handleAddEvent = (data) => {
+    const { title, color } = data
+    const { date } = newEvent
 
     // 제목이나 날짜가 비어있는 경우 추가하지 않음
     if (!title.trim() || !date) return
@@ -100,7 +90,7 @@ const Calendar = () => {
   }
 
   // 선택된 이벤트 수정 버튼 클릭 시 호출
-  const handleUpdateEvent = () => {
+  const handleUpdateEvent = (selectedEvent) => {
     if (!selectedEvent.title.trim()) return // 제목이 비어있으면 수정하지 않음
 
     setEvents((prevEvents) =>
@@ -126,22 +116,6 @@ const Calendar = () => {
     setShowModal(false)
   }
 
-  // 수정 이벤트 입력 필드의 값이 변경될 때 호출
-  const handleEditInputChange = (e) => {
-    setSelectedEvent({
-      ...selectedEvent,
-      title: e.target.value
-    })
-  }
-
-  // 수정 이벤트 색상 선택기가 변경될 때 호출
-  const handleEditColorChange = (e) => {
-    setSelectedEvent({
-      ...selectedEvent,
-      color: e.target.value
-    })
-  }
-
   // 이벤트 완료 상태 토글 함수
   const handleToggleCompleted = (eventId) => {
     setEvents((prevEvents) =>
@@ -149,7 +123,7 @@ const Calendar = () => {
     )
   }
 
-  // 이벤트 콘텐츠 렌더링 함수
+  // 이벤트 콘텐츠를 렌더링하는 함수
   const renderEventContent = (eventInfo) => (
     <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
       {/* 
@@ -179,13 +153,16 @@ const Calendar = () => {
 
   return (
     <>
+      {/* 메타 태그를 설정하여 SEO 및 브라우저 탭 제목을 설정 */}
       <MetaTags subTitle={' | Calendar'} description={'달력 페이지입니다.'} keywords={'calendar'} />
 
+      {/* // 헤더 */}
       <Header />
       <div className="p-8 md:px-20 md:py-12 lg:px-32 lg:pb-28 xl:px-60 xl:py:30 sm:px-12 sm:p-16">
+        {/* FullCanlendar 컴포넌트를 사용하여 달력을 렌더링 */}
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth" // 기본 뷰 설정
+          initialView="dayGridMonth" // 기본 뷰 설정(월별)
           events={events.map((event) => ({
             ...event, // 이벤트 색상 설정
             backgroundColor: event.color,
@@ -197,20 +174,16 @@ const Calendar = () => {
         />
         {showModal && (
           <EventModal
-            newEvent={newEvent}
-            handleInputChange={handleInputChange}
-            handleColorChange={handleColorChange}
-            handleAddEvent={handleAddEvent}
-            handleCloseModal={handleCloseModal}
+            newEvent={newEvent} // 새 이벤트 상태를 전달
+            handleAddEvent={handleAddEvent} // 새 이벤트 추가 함수를 전달
+            handleCloseModal={handleCloseModal} // 모달 닫기 함수를 전달
           />
         )}
         {showEditModal && selectedEvent && (
           <EditEventModal
-            selectedEvent={selectedEvent}
-            handleEditInputChange={handleEditInputChange}
-            handleEditColorChange={handleEditColorChange}
-            handleUpdateEvent={handleUpdateEvent}
-            handleDeleteEvent={handleDeleteEvent}
+            selectedEvent={selectedEvent} // 선택된 이벤트 정보를 전달
+            handleUpdateEvent={handleUpdateEvent} // 이벤트 수정 함수를 전달
+            handleDeleteEvent={handleDeleteEvent} // 이벤트 삭제 함수를 전달
           />
         )}
       </div>

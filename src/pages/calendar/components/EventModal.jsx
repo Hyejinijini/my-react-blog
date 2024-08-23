@@ -1,36 +1,24 @@
 import React from 'react'
 
 // components
-import EventInputField from '@pages/calendar/components/EventInputField.jsx'
-import EventBtn from '@pages/calendar/components/EventBtn.jsx'
+import EventForm from '@pages/calendar/components/EventForm.jsx'
 
-const EventModal = ({
-  newEvent, // 새로운 이벤트의 데이터 객체
-  handleInputChange, // 입력 값 변경 처리 함수
-  handleColorChange, // 색상 선택 변경 처리 함수
-  handleAddEvent, // 이벤트 추가 처리 함수
-  handleCloseModal // 모달 닫기 처리 함수
-}) => (
-  <div className="fixed inset-0 flex items-center justify-center z-50">
-    <div className="bg-white border border-gray-300 p-6 rounded-lg max-w-lg w-full">
-      {/* 모달의 제목 */}
-      <h2 className="text-xl font-bold mb-4">일정 추가</h2>
+const EventModal = ({ newEvent, handleAddEvent, handleCloseModal }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="bg-white border border-gray-300 p-6 rounded-lg max-w-lg w-full">
+        {/* 모달 제목 */}
+        <h2 className="text-xl font-bold mb-4">일정 추가</h2>
 
-      {/* 입력 필드 */}
-      <div className="mb-4 flex items-center justify-between">
-        <EventInputField
-          newEvent={newEvent}
-          handleInputChange={handleInputChange}
-          handleColorChange={handleColorChange}
+        {/* 이벤트 추가하는 폼 */}
+        <EventForm
+          newEvent={newEvent} // 새 이벤트에 대한 상태를 전달
+          handleAddEvent={handleAddEvent} // 이벤트 추가 함수를 전달
+          handleCloseModal={handleCloseModal} // 모달 닫기 함수를 전달
         />
       </div>
-
-      {/* 모달 하단 버튼들 */}
-      <div className="flex justify-end mt-4 gap-2">
-        <EventBtn handleAddEvent={handleAddEvent} handleCloseModal={handleCloseModal} />
-      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default EventModal
