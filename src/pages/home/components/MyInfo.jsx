@@ -12,8 +12,9 @@ import TechStack from '@pages/home/components/TechStack.jsx'
 const MyInfo = () => {
   const [isFlipped, setIsFlipped] = useState(false)
 
+  // 카드 클릭 시 호출되는 함수
   const handleCardClick = () => {
-    setIsFlipped((prev) => !prev)
+    setIsFlipped((prev) => !prev) // 현재 상태를 반전시켜 카드가 뒤집히도록 설정
   }
 
   console.log('Rendering SelfIntro: isFlipped =', isFlipped) // 디버깅 로그
