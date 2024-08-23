@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { getRequest } from '@/api/apiClient.js'
-import { ABOUT_ME_URL, ABOUT_LIST_URL } from '@/api/keys/about/url.js'
 
 export const useAboutDataFetchHook = () => {
   const [userInfo, setUserInfo] = useState(null)
 
   useEffect(() => {
-    getRequest(ABOUT_ME_URL).then((data) => setUserInfo(data))
+    getRequest().then((data) => setUserInfo(data))
   }, [])
 
   return {
@@ -31,7 +30,7 @@ export const useAboutListHook = () => {
   const [list, setList] = useState([])
 
   useEffect(() => {
-    getRequest(ABOUT_LIST_URL)
+    getRequest()
       .then((data) => {
         setList(data)
       })
