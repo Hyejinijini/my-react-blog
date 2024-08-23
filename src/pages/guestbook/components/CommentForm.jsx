@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form'
 
 const CommentForm = ({ setComments, commentsPerPage, setCurrentPage }) => {
+  // react-hook-form을 사용하여 폼 상태를 관리
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      newComment: '' // 입력 필드의 초기값 설정
+      newComment: '' // 입력 필드의 초기값을 빈 문자열로 설정
     }
   })
 
@@ -33,11 +34,11 @@ const CommentForm = ({ setComments, commentsPerPage, setCurrentPage }) => {
       // 현재 페이지 업데이트
       setCurrentPage(newPage)
 
-      return updatedComments
+      return updatedComments // 업데이트된 댓글 목록 반환
     })
 
     // 폼 필드 초기화
-    reset({ newComment: '' })
+    reset({ newComment: '' }) // 입력 필드를 빈 문자열로 초기화
   }
 
   return (
@@ -51,7 +52,7 @@ const CommentForm = ({ setComments, commentsPerPage, setCurrentPage }) => {
           {/* 댓글 입력 필드 */}
           <textarea
             {...register('newComment', { required: '댓글 내용을 입력해주세요.' })} // 댓글 입력 필드에 대한 유효성 검사
-            rows="4"
+            rows="4" // 텍스트 영역의 행 수
             className="border border-gray-300 p-2 w-full rounded-md focus:outline-none focus:border-rose-500"
             placeholder="여기에 댓글을 작성해주세요..."
           />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 
 const useFilteredListHook = (searchTerm, list) => {
   const [filteredList, setFilteredList] = useState([]) // 필터링된 목록 상태 추가
