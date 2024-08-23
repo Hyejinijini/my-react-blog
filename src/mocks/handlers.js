@@ -2,7 +2,7 @@
 import { http, HttpResponse } from 'msw'
 
 // home
-import { PROFILE_URL } from '@api/keys/home/url.js'
+import { PROFILE_URL } from '@api/keys/sidebar/url.js'
 
 export const handlers = [
   http.get(PROFILE_URL, () => {
