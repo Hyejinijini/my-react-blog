@@ -12,3 +12,44 @@
   text-decoration: line-through;
   color: gray;
 }
+
+/* 기본 버튼 스타일 */
+.fc-button {
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  background-color: transparent;
+}
+
+/* 오늘 버튼 스타일 */
+.fc-button.fc-today-button {
+  background-color: #fda4af !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* 오늘 버튼 호버 스타일 */
+.fc-button.fc-today-button:hover {
+  background-color: #fb7185 !important;
+}
+
+/* 오늘 버튼 클릭 및 포커스 스타일 */
+.fc-button.fc-today-button:focus,
+.fc-button.fc-today-button:active {
+  background-color: #fda4af !important;
+  color: #ffffff !important;
+  outline: none;
+}
+
+/* 이전 버튼과 다음 버튼 기본 스타일 */
+.fc-button.fc-prev-button,
+.fc-button.fc-next-button {
+  background-color: #fda4af !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* 이전 버튼과 다음 버튼 호버 스타일 */
+.fc-button.fc-prev-button:hover,
+.fc-button.fc-next-button:hover {
+  background-color: #f43f5e !important;
+}
