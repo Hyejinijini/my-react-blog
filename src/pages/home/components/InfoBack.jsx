@@ -10,11 +10,11 @@ import { FiSave, FiEdit2 } from 'react-icons/fi'
 import styles from '@assets/styles/css/home/selfInfo.module.css'
 
 const InfoBack = ({ isFlipped, handleCardClick }) => {
-  // react-hook-form 사용
+  // react-hook-form 사용하여 폼 상태 관리
   const { register, handleSubmit } = useForm()
   const [isEditing, setIsEditing] = useState(false)
 
-  // 프로필 데이터
+  // 프로필 데이터 상태
   const [profileData, setProfileData] = useState({
     name: '',
     birthDate: '',
@@ -30,6 +30,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
     if (savedData) {
       setProfileData(savedData)
     } else {
+      // 기본값
       setProfileData({
         name: '방혜진',
         birthDate: '2001-08-13',
@@ -51,13 +52,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
 
   // 프로필 저장 및 수정 폼 비활성화 함수
   const handleSaveClick = () => {
-    handleSubmit(onSubmit)()
-  }
-
-  // 입력 필드 값 변경 시 호출되는 함수
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setProfileData({ ...profileData, [name]: value }) // 입력된 값으로 profileData 상태를 업데이트
+    handleSubmit(onSubmit)() // 폼 제출 함수 호출
   }
 
   // 필드별로 아이콘을 렌더링하는 함수
@@ -94,6 +89,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
 
           {/* 아이콘과 수정 버튼 */}
           <div className="flex items-center">
+            {/* 돌아가기 버튼 */}
             <FaArrowLeft className={`${styles.arrowIcon} cursor-pointer text-rose-600`} onClick={handleCardClick} />
 
             {/* 수정/저장 버튼 */}
@@ -110,6 +106,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
         {/* 프로필 데이터 폼 */}
         <form onSubmit={handleSubmit(onSubmit)}>
           {isEditing ? (
+            // 수정 모드일 때 렌더링되는 폼
             <div className="border-t border-rose-200 p-1.5">
               <ul className="space-y-4">
                 {Object.keys(profileData).map((key) => (
@@ -123,9 +120,8 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
                     <input
                       type="text"
                       name={key}
-                      {...register(key)} // register 함수로 필드 등록
-                      defaultValue={profileData[key]}
-                      onChange={handleChange}
+                      {...register(key)} // react-hook-form의 register 함수로 필드 등록
+                      defaultValue={profileData[key]} // 기본값으로 현재 프로필 데이터 설정
                       className="text-sm text-gray-800 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500"
                     />
                   </li>
