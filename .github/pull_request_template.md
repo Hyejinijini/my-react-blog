@@ -1,5 +1,5 @@
-## issue
+## 작업 내용
 
-## description
+## 관련 이슈
 
-## screenShot
+## 스크린샷
