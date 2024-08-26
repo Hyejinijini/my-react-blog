@@ -24,19 +24,21 @@ const Calendar = () => {
       ? JSON.parse(storedEvents) // 로컬스토리지에서 저장된 이벤트를 불러옴
       : [
           // 로컬스토리지에 저장된 이벤트가 없을 경우 기본 이벤트를 설정
-          { title: '알바', date: '2024-08-20', completed: false, id: '1', color: '#fecdd3' },
-          { title: '알바', date: '2024-08-21', completed: false, id: '2', color: '#fecdd3' },
-          { title: '알바', date: '2024-08-22', completed: false, id: '3', color: '#fecdd3' },
-          { title: '배드민턴치기', date: '2024-08-24', completed: false, id: '4', color: '#bae6fd' },
-          { title: '과외', date: '2024-08-25', completed: false, id: '5', color: '#fed7aa' },
-          { title: '롯데마트가기', date: '2024-08-30', completed: false, id: '6', color: '#ddd6fe' }
+          { title: '알바', start: '2024-08-20', completed: false, id: '1', color: '#fecdd3' },
+          { title: '알바', start: '2024-08-21', completed: false, id: '2', color: '#fecdd3' },
+          { title: '알바', start: '2024-08-22', completed: false, id: '3', color: '#fecdd3' },
+          { title: '배드민턴치기', start: '2024-08-24', completed: false, id: '4', color: '#bae6fd' },
+          { title: '과외', start: '2024-08-25', completed: false, id: '5', color: '#fed7aa' },
+          { title: '롯데마트가기', start: '2024-08-30', completed: false, id: '6', color: '#ddd6fe' },
+          { title: '캠핑🏕', start: '2024-09-07', end: '2024-09-08', completed: false, id: '6', color: '#d9f99d' }
         ]
   })
 
   // 새 이벤트 입력 상태를 관리
   const [newEvent, setNewEvent] = useState({
     title: '',
-    date: '',
+    startDate: '',
+    endDate: '',
     color: '#000000'
   })
 
@@ -54,10 +56,12 @@ const Calendar = () => {
 
   // 날짜 클릭 시 새 이벤트 모달을 표시하고 선택된 날짜를 설정
   const handleDateClick = (info) => {
-    setNewEvent((prevNewEvent) => ({
-      ...prevNewEvent,
-      date: info.dateStr // 클릭한 날짜를 새 이벤트 날짜로 설정
-    }))
+    setNewEvent({
+      title: '',
+      startDate: info.dateStr, // 선택한 날짜를 시작 날짜로 설정
+      endDate: info.dateStr, // 종료 날짜는 비워둠
+      color: '#000000'
+    })
     setShowModal(true)
   }
 
@@ -66,7 +70,8 @@ const Calendar = () => {
     setSelectedEvent({
       id: info.event.id,
       title: info.event.title,
-      date: info.event.startStr,
+      start: info.event.startStr,
+      end: info.event.endStr || info.event.startStr,
       completed: info.event.extendedProps.completed,
       color: info.event.backgroundColor
     })
@@ -75,17 +80,28 @@ const Calendar = () => {
 
   // 새 이벤트 추가 버튼 클릭 시 호출
   const handleAddEvent = (data) => {
-    const { title, color } = data
-    const { date } = newEvent
+    const { title, color, startDate, endDate } = data
+
+    // 종료 날짜가 있으면 하루 더 추가
+    const adjustedEndDate = endDate
+      ? new Date(new Date(endDate).setDate(new Date(endDate).getDate() + 1)).toISOString().split('T')[0]
+      : startDate
 
     // 제목이나 날짜가 비어있는 경우 추가하지 않음
-    if (!title.trim() || !date) return
+    if (!title.trim() || !startDate) return
 
     setEvents((prevEvents) => [
       ...prevEvents,
-      { title, date, id: new Date().getTime().toString(), completed: false, color }
+      {
+        title,
+        start: startDate,
+        end: adjustedEndDate,
+        id: new Date().getTime().toString(),
+        completed: false,
+        color
+      }
     ])
-    setNewEvent({ title: '', date: '', color: '#000000' }) // 새 이벤트 상태 초기화
+    setNewEvent({ title: '', startDate: '', endDate: '', color: '#fff' }) // 새 이벤트 상태 초기화
     setShowModal(false) // 모달 닫기
   }
 
@@ -93,13 +109,26 @@ const Calendar = () => {
   const handleUpdateEvent = (selectedEvent) => {
     if (!selectedEvent.title.trim()) return // 제목이 비어있으면 수정하지 않음
 
+    // 날짜를 하루 추가하여 endDate가 전체 날자를 포함하도록 설정
+    const adjustedEndDate = selectedEvent.endDate
+      ? new Date(selectedEvent.endDate).setDate(new Date(selectedEvent.endDate).getDate() + 1)
+      : selectedEvent.startDate
+    const endDateString = new Date(adjustedEndDate).toISOString().split('T')[0] // 날짜 형식으로 변환
+
     setEvents((prevEvents) =>
       prevEvents.map((event) =>
         event.id === selectedEvent.id
-          ? { ...event, title: selectedEvent.title, completed: selectedEvent.completed, color: selectedEvent.color }
+          ? {
+              ...event,
+              title: selectedEvent.title,
+              start: selectedEvent.startDate || event.start,
+              end: endDateString,
+              color: selectedEvent.color
+            }
           : event
       )
     )
+
     setShowEditModal(false) // 수정 모달 닫기
     setSelectedEvent(null) // 선택된 이벤트 초기화
   }
@@ -165,6 +194,8 @@ const Calendar = () => {
           initialView="dayGridMonth" // 기본 뷰 설정(월별)
           events={events.map((event) => ({
             ...event, // 이벤트 색상 설정
+            start: event.start,
+            end: event.end,
             backgroundColor: event.color,
             borderColor: event.color
           }))}

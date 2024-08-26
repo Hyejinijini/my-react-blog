@@ -1,67 +1,112 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
+import { ChromePicker } from 'react-color'
 
 const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
-  // useForm 훅을 사용하여 폼 상태를 관리
-  // defalutValues 옵션을 통해 폼의 초기값을 설정
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register, setValue } = useForm({
     defaultValues: {
-      title: newEvent.title, // newEvent의 제목을 초기값으로 설정
-      color: newEvent.color // newEvent 색상을 초기값으로 설정
+      title: newEvent.title || '', // 제목 초기값
+      color: newEvent.color || '#ffffff', // 색상 초기값
+      startDate: newEvent.startDate || '', // 시작 날짜 초기값
+      endDate: newEvent.endDate || '' // 종료 날짜 초기값
     }
   })
 
+  const [showColorPicker, setShowColorPicker] = useState(false)
+  const [color, setColor] = useState(newEvent.color || '#ffffff')
+  const colorPickerRef = useRef(null)
+
+  // 색상 변경 시 폼 상태와 로컬 색상 상태 업데이트
+  const handleColorChange = (color) => {
+    setColor(color.hex)
+    setValue('color', color.hex)
+  }
+
+  // 색상 선택기 클릭 시 팝업 닫힘 방지
+  const handleClick = (event) => {
+    event.stopPropagation()
+    setShowColorPicker(!showColorPicker)
+  }
+
   // 폼 제출 시 호출되는 함수
-  // 폼의 데이터를 인자로 받아 handleAddEvent 함수를 호출
-  const onSubmit = (newEvent) => {
-    handleAddEvent(newEvent) // handleAddEvent함수에 폼 데이터를 전달하여 새 이벤트를 추가
+  const onSubmit = (formData) => {
+    handleAddEvent(formData)
+    handleCloseModal() // 폼 제출 후 모달 닫기
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* 제목 입력 필드 */}
-      <div className="flex">
-        {/* react-hook-form 의 register 를 사용하여 이 필드를 폼 상태에 등록하고,
-        required 옵션을 통해 제목 입력을 필수로 지정  */}
-        <input
-          type="text"
-          {...register('title', { required: true })}
-          className="border border-gray-300 focus:outline-none focus:border-rose-400 p-2 w-full rounded-md mr-4"
-          placeholder="일정을 입력해주세요."
-        />
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      {/* 어두운 배경 */}
+      <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={handleCloseModal}></div>
 
-        {/* 색상 선택 필드 */}
-        <div className="flex justify-center items-center">
-          {/* react-hook-form 의 register 를 사용하여 이 필드를 폼 상태에 등록 */}
+      {/* 모달 내용 */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white py-2 rounded-md border border-gray-300 relative z-50 w-1/2"
+      >
+        {/* 모달 제목 */}
+        <h2 className="text-lg font-bold text-gray-700 mb-4 border-b border-gray-300 pb-4 pt-2 px-4">일정 추가</h2>
+        <label className="text-gray-700 px-4">일정</label>
+        <div className="relative mb-4 px-4 flex items-center">
           <input
-            type="color"
-            {...register('color')}
-            className="w-8 h-8 border-none cursor-pointer bg-transparent p-0 m-0"
+            type="text"
+            {...register('title', { required: true })}
+            className="border border-gray-300 focus:outline-none focus:border-rose-400 p-2 w-full rounded-md pr-16"
+            placeholder="일정을 입력해주세요."
+          />
+
+          <button
+            type="button"
+            onClick={handleClick}
+            className="absolute right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full border border-gray-300"
+            style={{ backgroundColor: color }}
+          />
+
+          {showColorPicker && (
+            <div ref={colorPickerRef} className="absolute right-0 top-full mt-2 z-10">
+              <ChromePicker color={color} onChange={handleColorChange} disableAlpha />
+            </div>
+          )}
+        </div>
+
+        {/* 날짜 입력 필드 */}
+        <div className="flex flex-col gap-2 mb-4 px-4">
+          <label className="text-gray-700">시작 날짜</label>
+          <input
+            type="date"
+            {...register('startDate', { required: true })}
+            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 rounded-md mb-2 p-2"
           />
         </div>
-      </div>
 
-      {/* 추가 및 닫기 버튼 그룹 */}
-      <div className="flex justify-end mt-6 gap-2">
-        {/* 이벤트 추가 버튼 */}
-        {/* 폼을 제출항 onSubmit 함수를 호출 */}
-        <button
-          type="submit" // 폼 제출을 트리거하는 버튼
-          className="text-rose-700 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-700 hover:text-white"
-        >
-          추가
-        </button>
+        <div className="flex flex-col gap-2 px-4">
+          <label className="text-gray-700">종료 날짜</label>
+          <input
+            type="date"
+            {...register('endDate')}
+            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 p-2 rounded-md"
+          />
+        </div>
 
-        {/* 닫기 버튼 */}
-        <button
-          type="button"
-          onClick={handleCloseModal} // 버튼 클릭 시 폼이 제출되지 않도록 type을 'button'으로 설정
-          className="text-gray-700 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-gray-700 hover:text-white"
-        >
-          닫기
-        </button>
-      </div>
-    </form>
+        {/* 추가 및 닫기 버튼 그룹 */}
+        <div className="flex justify-end mt-6 gap-2 p-4">
+          <button
+            type="submit"
+            className="text-rose-700 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-700 hover:text-white"
+          >
+            추가
+          </button>
+
+          <button
+            type="button"
+            onClick={handleCloseModal}
+            className="text-gray-700 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-gray-700 hover:text-white"
+          >
+            닫기
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 
