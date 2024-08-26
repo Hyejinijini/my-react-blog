@@ -5,8 +5,7 @@ React를 이용한 컴포넌트 기반 개발 방식과 Tailwind CSS를 사용�
 Github 디자인을 참고하여 UI를 구현했습니다.
 
 ## 환경
-
-- Node.js v20.14.0+
+- Node.js v20.17.0+
 - Yarn v4.3.1+
 - vite v5.3.1+
 
