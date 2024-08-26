@@ -23,3 +23,29 @@
   overflow: hidden; /* 텍스트가 부모 컨테이너를 넘지 않도록 설정 */
   letter-spacing: 1em; /* 글자 간격 조정 */
 }
+
+/* react-color의 기본 스타일을 추가 */
+.react-colorful {
+  display: flex;
+  flex-direction: column;
+}
+
+.react-colorful__saturation,
+.react-colorful__hue,
+.react-colorful__alpha {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+.react-colorful__saturation {
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.react-colorful__hue,
+.react-colorful__alpha {
+  border-radius: 2px;
+  cursor: pointer;
+}
