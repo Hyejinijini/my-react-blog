@@ -123,16 +123,16 @@ const BubbleChartComponent = ({ data, options }) => {
 // Test 컴포넌트
 const Test = () => {
   const data = [
-    { name: 'HTML', value: 10, color: '#f39c12' },
-    { name: 'CSS', value: 15, color: '#3498db' },
-    { name: 'JavaScript', value: 20, color: '#e74c3c' },
-    { name: 'React', value: 25, color: '#2ecc71' },
-    { name: 'Tailwind CSS', value: 30, color: '#9b59b6' },
-    { name: 'Node.js', value: 35, color: '#1abc9c' },
-    { name: 'React Hook Form', value: 40, color: '#e67e22' },
-    { name: 'Zustand', value: 45, color: '#f1c40f' },
-    { name: 'Axios', value: 50, color: '#2c3e50' },
-    { name: 'Storybook', value: 55, color: '#7f8c8d' }
+    { name: 'Node.js', value: 10, color: '#ffe4e6' },
+    { name: 'Zustand', value: 10, color: '#ffe4e6' },
+    { name: 'Storybook', value: 10, color: '#ffe4e6' },
+    { name: 'Axios', value: 15, color: '#fecdd3' },
+    { name: 'React Hook Form', value: 20, color: '#fda4af' },
+    { name: 'JavaScript', value: 30, color: '#fb7185' },
+    { name: 'Tailwind CSS', value: 35, color: '#f43f5e' },
+    { name: 'CSS', value: 35, color: '#e11d48' },
+    { name: 'React', value: 40, color: '#be123c' },
+    { name: 'HTML', value: 45, color: '#9f1239' }
   ]
 
   const options = {
