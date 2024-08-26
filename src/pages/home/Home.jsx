@@ -4,9 +4,6 @@ import React from 'react'
 import MetaTags from '@common/components/etc/MetaTags.jsx'
 import HomeMain from '@pages/home/components/HomeMain.jsx'
 
-// test
-import Test from '@pages/home/components/Test.jsx'
-
 const Home = () => {
   return (
     <div>
@@ -17,8 +14,6 @@ const Home = () => {
         {/* 메인 콘텐츠 */}
         <HomeMain />
       </div>
-
-      <Test />
     </div>
   )
 }
