@@ -1,14 +1,17 @@
 # My React Blog - HYEHYE
+
 이 프로젝트는 개인 블로그를 개발하기 위한 학습 목적으로 시작되었습니다.<br />
 React를 이용한 컴포넌트 기반 개발 방식과 Tailwind CSS를 사용한 유연한 스타일링을 익히기 위해 제작되었습니다.<br />
-Github 디자인을 참고하여 UI를 구현했습니다. 
+Github 디자인을 참고하여 UI를 구현했습니다.
 
 ## 환경
+
 - Node.js v20.14.0+
 - Yarn v4.3.1+
 - vite v5.3.1+
 
 ## 기술
+
 - **React**: 사용자 인터페이스를 구축하기 위한 JavaScript 라이브러리입니다.
 - **React Router**: 싱글 페이지 애플리케이션(SPA)에서 클라이언트 측 라우팅을 구현하기 위한 라이브러리입니다. URL에 따라 페이지를 동적으로 전환할 수 있어 사용자가 앱 내에서 다른 페이지로 이동할 수 있도록 합니다.
 - **JavaScript**: 이 프로젝트의 주된 프로그래밍 언어로, 모든 로직과 UI 동작을 구현하는 데 사용됩니다.
@@ -27,28 +30,33 @@ Github 디자인을 참고하여 UI를 구현했습니다.
 - **Storybook**: UI 컴포넌트를 개발하고 문서화하기 위한 도구입니다.
 
 ## 실행 방법
+
 1. 레파지토리 클론
-    ```bash
-    git clone <repository-url>
-    cd <project-directory>
-    ```
+
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+   ```
 
 2. 의존성 설치
-    ```bash
-    yarn install
-    # or
-    yarn
-    ```
+
+   ```bash
+   yarn install
+   # or
+   yarn
+   ```
 
 3. 개발 서버 시작
-    ```bash
-    yarn dev
-    ```
+
+   ```bash
+   yarn dev
+   ```
 
 4. 개발 빌드
-    ```bash
-    yarn build
-    ```
+   ```bash
+   yarn build
+   ```
 
 ## 향후 계획
+
 - **TodoList 기능**: 캘린더에 TodoList 기능 추가
