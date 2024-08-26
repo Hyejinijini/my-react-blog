@@ -7,9 +7,6 @@ const EventModal = ({ newEvent, handleAddEvent, handleCloseModal }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="bg-white border border-gray-300 p-6 rounded-lg max-w-lg w-full">
-        {/* 모달 제목 */}
-        <h2 className="text-xl font-bold mb-4">일정 추가</h2>
-
         {/* 이벤트 추가하는 폼 */}
         <EventForm
           newEvent={newEvent} // 새 이벤트에 대한 상태를 전달
