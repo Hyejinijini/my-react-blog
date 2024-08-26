@@ -1,5 +1,8 @@
 import { useForm } from 'react-hook-form'
 
+// common
+import Button from '@common/components/Button.jsx'
+
 const CommentForm = ({ setComments, commentsPerPage, setCurrentPage }) => {
   // react-hook-form을 사용하여 폼 상태를 관리
   const { register, handleSubmit, reset } = useForm({
@@ -58,13 +61,9 @@ const CommentForm = ({ setComments, commentsPerPage, setCurrentPage }) => {
           />
 
           <div className="flex justify-end mt-2">
-            {/* 댓글 추가 버튼 */}
-            <button
-              type="submit" // 클릭 시 폼 제출
-              className="bg-rose-400 hover:bg-rose-500 font-bold text-white px-4 py-1 rounded-md border border-rose-400"
-            >
+            <Button type="submit" className="px-4 py-1 font-bold">
               Comment
-            </button>
+            </Button>
           </div>
         </form>
       </div>
