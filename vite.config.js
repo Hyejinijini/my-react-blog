@@ -16,7 +16,8 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@common': path.resolve(__dirname, './src/common'),
       '@layouts': path.resolve(__dirname, './src/layouts'),
-      '@pages': path.resolve(__dirname, './src/pages')
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@stories': path.resolve(__dirname, './src/stories')
     }
   },
   // scss 전역 사용
