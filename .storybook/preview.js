@@ -1,3 +1,5 @@
+import '@assets/styles/css/tailwind.css'
+
 const preview = {
   parameters: {
     controls: {
