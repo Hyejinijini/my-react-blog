@@ -59,5 +59,4 @@ Github 디자인을 참고하여 UI를 구현했습니다.
 ## 향후 계획
 
 - **TechStack 예쁘장하게 꾸미기**
-- **storybook 사용**: 공통 컴포넌트 storybook에 올리기
 - **주간, 일별 캘린더**: calendar 주간, 일별 캘린더 기능 추가
