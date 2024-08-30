@@ -1,71 +1,55 @@
-import Button from '@stories/Button.jsx'
+import Button from '@common/components/Button.jsx'
 
-const meta = {
+export default {
   title: 'Components/Button',
   component: Button,
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' }, // 배경색을 선택할 수 있도록 설정
-    primary: { control: 'boolean' }, // primary 속성을 토글할 수 있도록 설정
-    size: {
-      control: { type: 'select' },
-      options: ['small', 'medium', 'large'] // size를 선택할 수 있도록 설정
-    },
-    padding: { control: 'text' }, // padding을 입력할 수 있도록 설정
-    margin: { control: 'text' }, // margin을 입력할 수 있도록 설정
-    width: { control: 'text' }, // width를 입력할 수 있도록 설정
-    height: { control: 'text' }, // height를 입력할 수 있도록 설정
-    onClick: { action: 'clicked' }
+  tags: ['autodocs']
+}
+
+export const Default = {
+  args: {
+    type: 'button',
+    onClick: () => alert('Button Default clicked!'),
+    className: 'px-4 py-2',
+    children: 'Button Text'
   }
 }
 
-export default meta
-
-export const Primary = {
+export const White = {
   args: {
-    primary: true,
-    label: 'Button',
-    size: 'medium', // 기본적으로 medium 크기로 설정
-    padding: '8px 16px', // 기본 padding 설정
-    margin: '0', // 기본 margin 설정
-    width: 'auto', // 기본 width 설정
-    height: 'auto' // 기본 height 설정
+    type: 'Button',
+    onClick: () => alert('Button White clicked!'),
+    className: 'bg-white border-gray-500 px-4 py-2 text-black hover:bg-gray-100',
+    children: 'Button White'
   }
 }
 
-export const Small = {
+export const Gray = {
   args: {
-    size: 'small', // small 크기 설정
-    label: 'Button',
-    padding: '6px 12px', // small 크기에 맞춘 padding 설정
-    margin: '0', // 기본 margin 설정
-    width: 'auto', // 기본 width 설정
-    height: 'auto' // 기본 height 설정
+    type: 'button',
+    onClick: () => alert('Button Gray clicked!'),
+    className: 'bg-gray-500 border-gray-500 px-4 py-2 hover:bg-gray-600',
+    children: 'Button Gray'
   }
 }
 
-export const Medium = {
+export const Blue = {
   args: {
-    primary: false, // primary를 false로 설정하여 Secondary 스타일 적용
-    label: 'Button',
-    size: 'medium',
-    padding: '8px 16px', // 기본 padding 설정
-    margin: '0', // 기본 margin 설정
-    width: 'auto', // 기본 width 설정
-    height: 'auto' // 기본 height 설정
+    type: 'Button',
+    onClick: () => alert('Button Blue clicked!'),
+    className: 'bg-blue-400 border-blue-400 px-4 py-2 hover:bg-blue-500',
+    children: 'Button Blue'
   }
 }
 
-export const Large = {
+export const Red = {
   args: {
-    size: 'large', // large 크기 설정
-    label: 'Button',
-    padding: '10px 20px', // large 크기에 맞춘 padding 설정
-    margin: '0', // 기본 margin 설정
-    width: 'auto', // 기본 width 설정
-    height: 'auto' // 기본 height 설정
+    type: 'Button',
+    onClick: () => alert('Button Red clicked!'),
+    className: 'bg-red-500 border-red-500 px-4 py-2 hover:bg-red-600',
+    children: 'Button Red'
   }
 }
