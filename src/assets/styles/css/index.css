@@ -15,15 +15,6 @@
   background-color: #fff1f2;
 }
 
-/* 타이핑 애니메이션 스타일 */
-.loading-animation {
-  font-size: 3rem;
-  color: #333;
-  white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
-  overflow: hidden; /* 텍스트가 부모 컨테이너를 넘지 않도록 설정 */
-  letter-spacing: 1em; /* 글자 간격 조정 */
-}
-
 /* react-color의 기본 스타일을 추가 */
 .react-colorful {
   display: flex;
