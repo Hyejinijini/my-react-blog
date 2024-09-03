@@ -8,7 +8,11 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
   // react-hook-form 사용
   // 1. register: 폼 필드를 등록하고 상태를 관리 -> register 로 폼 상태를 등록하면 폼 제출 시 서버로 전송될 데이터의 key 가 된다.
   // 2. handleSubmit: 폼 제출 시 호출될 함수를 처리
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
 
   // 소셜 계정 링크를 저장하는 state
   const [links, setLinks] = useState([])
@@ -99,8 +103,11 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
                 placeholder="Name"
                 className="border border-gray-300 focus:outline-none focus:ring-rose-500 focus:border-rose-500 rounded-md p-2 px-3 py-1 mb-2 w-full"
                 // register 함수를 사용하여 입력 필드를 폼 상태에 등록
-                {...register('name')}
+                {...register('name', {
+                  required: '이름을 입력해 주세요! 이 필드는 필수입니다.'
+                })}
               />
+              {errors.name && <p className="text-red-500 text-xs mb-2">{errors.name.message}</p>}
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
@@ -128,8 +135,14 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
                 // 필수 입력 필드로 설정
                 required
                 // register 함수를 사용하여 입력 필드를 폼 상태에 등록
-                {...register('image')}
+                {...register('image', {
+                  pattern: {
+                    value: /^(ftp|http|https):\/\/[^ "]+$/,
+                    message: '올바른 URL을 입력해 주세요!'
+                  }
+                })}
               />
+              {errors.image && <p className="text-red-500 text-xs mb-2">{errors.image.message}</p>}
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
@@ -145,7 +158,6 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
                     value={link.url}
                     onChange={(e) => handleLinkChange(index, e)}
                     placeholder="Link URL"
-                    required
                     className="border rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
                   />
 
