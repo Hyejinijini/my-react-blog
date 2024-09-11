@@ -39,7 +39,7 @@ const Calendar = () => {
     title: '',
     startDate: '',
     endDate: '',
-    color: '#000000'
+    color: '#fff'
   })
 
   // 선택된 이벤트 상태를 관리
@@ -60,7 +60,7 @@ const Calendar = () => {
       title: '',
       startDate: info.dateStr, // 선택한 날짜를 시작 날짜로 설정
       endDate: info.dateStr, // 종료 날짜는 비워둠
-      color: '#000000'
+      color: '#fff'
     })
     setShowModal(true)
   }
