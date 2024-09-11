@@ -5,7 +5,6 @@ import { IoIosAdd } from 'react-icons/io'
 
 // hooks
 import { useBucketListSwrHook } from '@pages/bucketList/hooks/useDataFetchHook.js'
-// import useBucketList from '@pages/bucketList/hooks/useBucketList.js'
 
 // commons
 import MetaTags from '@common/components/etc/MetaTags.jsx'
