@@ -1,8 +1,10 @@
-import Guestbook from '@pages/guestbook/Guestbook.jsx'
+import React, { lazy } from 'react'
+
+const Guestbook = lazy(() => import('@pages/guestbook/Guestbook.jsx'))
 
 const router = [
   {
-    path: 'Guestbook',
+    path: 'guestbook',
     element: <Guestbook />
   }
 ]
