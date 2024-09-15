@@ -40,3 +40,13 @@
   border-radius: 2px;
   cursor: pointer;
 }
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: gray;
+}
