@@ -7,6 +7,9 @@ import router from '@/router.jsx'
 
 import '@assets/styles/css/index.css'
 
+import useThemeStore from '@store/useThemeStore.js'
+import ThemeSwitcher from '@common/components/etc/ThemeSwitcher.jsx'
+
 async function enableMocking() {
   // if (process.env.NODE_ENV !== 'development') {
   //   return
@@ -80,6 +83,7 @@ const TypingText = () => {
 
 const Main = () => {
   const [loading, setLoading] = useState(true) // 로딩 상태 관리
+  const { theme } = useThemeStore()
 
   useEffect(() => {
     // 로딩 화면이 3초 후 종료되도록 타이머 설정
@@ -88,34 +92,38 @@ const Main = () => {
   }, [])
 
   return (
-    <AnimatePresence>
-      {loading ? (
-        <motion.div
-          key="loading"
-          className="loading-screen"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#fff1f2' // 로딩 화면 배경색 (연한 핑크)
-          }}
-          initial={{ opacity: 1, scale: 1 }} // 로딩 화면이 처음 나타날 때 설정
-          animate={{ opacity: 1, scale: 1 }} // 로딩 화면 동안 유지될 애니메이션 상태
-          exit={{ opacity: 0, scale: 1.1, transition: { duration: 1 } }} // 로딩 종료 시 서서히 사라지면서 약간 확대되는 애니메이션
-        >
-          {/* 위에서 정의한 타이핑 애니메이션 컴포넌트 */}
-          <TypingText />
-        </motion.div>
-      ) : (
-        // 로딩 후 메인 콘텐츠로 전환
-        <RouterProvider router={router} />
-      )}
-    </AnimatePresence>
+    <div className={`app ${theme}`}>
+      <AnimatePresence>
+        {loading ? (
+          <motion.div
+            key="loading"
+            className="loading-screen"
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#fff1f2' // 로딩 화면 배경색 (연한 핑크)
+            }}
+            initial={{ opacity: 1, scale: 1 }} // 로딩 화면이 처음 나타날 때 설정
+            animate={{ opacity: 1, scale: 1 }} // 로딩 화면 동안 유지될 애니메이션 상태
+            exit={{ opacity: 0, scale: 1.1, transition: { duration: 1 } }} // 로딩 종료 시 서서히 사라지면서 약간 확대되는 애니메이션
+          >
+            {/* 위에서 정의한 타이핑 애니메이션 컴포넌트 */}
+            <TypingText />
+          </motion.div>
+        ) : (
+          <>
+            <RouterProvider router={router} />
+            <ThemeSwitcher />
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
