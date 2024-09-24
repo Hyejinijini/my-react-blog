@@ -2,17 +2,15 @@ import React from 'react'
 import useThemeStore from '@store/useThemeStore.js'
 
 const ThemeSwitcher = () => {
-  const { theme, setTheme } = useThemeStore()
-
-  // 테마를 토글하는 함수
-  const toggleTheme = () => {
-    // 현재 테마가 'light'인 경우 'dark'로 변경하고, 그렇지 않은 경우 'light'로 변경
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  const { isDarkMode, toggleDarkMode } = useThemeStore()
 
   return (
+    // 다크 모드 상태에 따라 클래스 이름 변경
     <div className="absolute transform z-10 top-2 right-2">
-      <button onClick={toggleTheme}>{theme === 'light' ? 'dark' : 'light'} 모드로 변경하기</button>
+      <button onClick={toggleDarkMode}>
+        {/* 현재 모드에 따라 버튼 텍스트 변경 */}
+        {isDarkMode ? 'light 모드로 전환' : 'dark 모드로 전환'}
+      </button>
     </div>
   )
 }
