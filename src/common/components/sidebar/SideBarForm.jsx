@@ -90,18 +90,18 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
   return (
     // 폼 제출 이벤트 처리
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={`${editMode ? 'mr-6' : ''}`}>
+      <div className={`${editMode ? 'mr-6' : ''} dark:text-customWhite`}>
         {editMode ? (
           <div className="flex flex-col items-center space-y-1 text-sm">
             <div className="w-full max-w-xs sm:max-w-sm">
-              <label className="block mb-2 text-sm font-bold text-gray-700">Name</label>
+              <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-customGrayMuted">Name</label>
               <input
                 id="name"
                 type="text"
                 // 현재 프로필의 이름을 기본값으로 설정
                 defaultValue={profile.name}
                 placeholder="Name"
-                className="border border-gray-300 focus:outline-none focus:ring-rose-500 focus:border-rose-500 rounded-md p-2 px-3 py-1 mb-2 w-full"
+                className="border border-gray-300 dark:border-customGrayMid focus:outline-none focus:ring-rose-500 focus:border-rose-500 dark:focus:border-customRoseMid dark:bg-customGrayDark rounded-md p-2 px-3 py-1 mb-2 w-full"
                 // register 함수를 사용하여 입력 필드를 폼 상태에 등록
                 {...register('name', {
                   required: '이름을 입력해 주세요! 이 필드는 필수입니다.'
@@ -111,27 +111,29 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
-              <label className="block mb-2 text-sm font-bold text-gray-700">Bio</label>
+              <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-customGrayMuted">Bio</label>
               <textarea
                 id="bio"
                 // 현재 프로필의 바이오를 기본값으로 설정
                 defaultValue={profile.bio}
                 placeholder="Add a bio"
-                className="border rounded-md h-20 p-2 px-3 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                className="border dark:border-customGrayMid rounded-md h-20 p-2 px-3 mb-2 w-full focus:outline-none dark:bg-customGrayDark focus:ring-rose-500 focus:border-rose-500 dark:focus:border-customRoseMid"
                 // register 함수를 사용하여 입력 필드를 폼 상태에 등록
                 {...register('bio')}
               />
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
-              <label className="block mb-2 text-sm font-bold text-gray-700">Profile Image URL</label>
+              <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-customGrayMuted">
+                Profile Image URL
+              </label>
               <input
                 id="image"
                 type="url"
                 // 현재 프로필 이미지 URL을 기본값으로 설정
                 defaultValue={profile.profileImage}
                 placeholder="Profile Image URL"
-                className="border border-gray-300 rounded-md p-2 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                className="border dark:border-customGrayMid border-gray-300 rounded-md p-2 mb-2 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500 dark:focus:border-customRoseMid dark:bg-customGrayDark"
                 // 필수 입력 필드로 설정
                 required
                 // register 함수를 사용하여 입력 필드를 폼 상태에 등록
@@ -146,10 +148,12 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
             </div>
 
             <div className="w-full max-w-xs sm:max-w-sm">
-              <label className="block mb-2 text-sm font-bold text-gray-700">Social accounts</label>
+              <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-customGrayMuted">
+                Social accounts
+              </label>
               {links.map((link, index) => (
                 <div key={link.id} className="flex items-center mb-2 space-x-2">
-                  <HiOutlineLink className="text-gray-600 text-lg" />
+                  <HiOutlineLink className="text-gray-600 text-lg dark:text-customWhite" />
                   <input
                     // 고유한 식별자인 index 를 사용하여 각 링크 입력 필드에 고유한 id 를 부여한다.
                     id={`url-${index}`}
@@ -158,7 +162,7 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
                     value={link.url}
                     onChange={(e) => handleLinkChange(index, e)}
                     placeholder="Link URL"
-                    className="border rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+                    className="border dark:border-customGrayMid rounded-md p-2 px-3 py-1 w-full focus:outline-none focus:ring-rose-500 focus:border-rose-500 dark:focus:border-customRoseMid dark:bg-customGrayDark"
                   />
 
                   <button
@@ -173,7 +177,7 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
               <button
                 type="button"
                 onClick={socialAppend}
-                className="border border-gray-300 bg-gray-50 rounded-md h-8 hover:bg-gray-200 duration-100 w-full mt-1 mb-1"
+                className="dark:text-customGray border border-gray-300 dark:border-customGrayMid bg-gray-50 dark:bg-customGrayMuted rounded-md h-8 hover:bg-gray-200 dark:hover:bg-[#A0A0A0] dark:hover:text-[#FFFFFF] duration-100 w-full mt-1 mb-1"
               >
                 Add Social Account
               </button>
@@ -183,14 +187,14 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
               {/* 폼 데이터를 제출하여 프로필을 업데이트 */}
               <button
                 type="submit"
-                className="border border-rose-400 bg-rose-400 text-white rounded-md h-8 hover:bg-rose-500 duration-100 w-1/6"
+                className="border border-rose-400 dark:border-customRoseMuted bg-rose-400 dark:bg-customRoseMid text-white rounded-md h-8 hover:bg-rose-500 dark:hover:bg-[#D77A85] duration-100 w-1/6"
               >
                 Save
               </button>
               <button
                 type="button"
                 onClick={handleCancelClick}
-                className="border border-gray-300 bg-gray-50 rounded-md h-8 hover:bg-gray-200 duration-100 w-1/4"
+                className="border border-gray-300 dark:border-customGrayMid bg-gray-50 dark:bg-customGrayMuted rounded-md h-8 hover:bg-gray-200 dark:hover:bg-[#A0A0A0] dark:text-customGray dark:hover:text-[#FFFFFF] duration-100 w-1/4"
               >
                 Cancel
               </button>
@@ -199,7 +203,7 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
         ) : (
           <button
             type="button"
-            className="border border-rose-200 bg-rose-50 rounded-md h-8 hover:bg-rose-100 duration-100 mb-6 sm:w-full w-full md:w-64 lg:w-72 px-4"
+            className="dark:text-customWhite border border-rose-200 dark:border-customRoseMuted bg-rose-50 dark:bg-customRoseMid rounded-md h-8 hover:bg-rose-100 dark:hover:bg-customRoseDark duration-100 mb-6 sm:w-full w-full md:w-64 lg:w-72 px-4"
             onClick={handleEditClick}
           >
             Edit profile
