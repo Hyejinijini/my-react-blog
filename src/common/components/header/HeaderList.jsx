@@ -15,8 +15,10 @@ const HeaderList = () => {
       <nav>
         <ul className="flex text-base font-medium gap-2">
           {/* Home 링크 */}
-          <li className={`py-2 ${location.pathname === '/' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
-            <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
+          <li
+            className={`py-2 ${location.pathname === '/' ? 'border-b-2 border-rose-400 font-bold dark:border-customRoseMuted' : ''}`}
+          >
+            <div className="flex items-center hover:bg-rose-100 hover:rounded-md dark:hover:bg-customRoseMuted duration-100 p-1.5 gap-1.5 pb-1">
               <AiOutlineHome className="text-lg" />
               {/* Home 링크를 클릭하면 "/" 경로로 이동합니다. */}
               <Link to="/">Home</Link>
@@ -24,8 +26,10 @@ const HeaderList = () => {
           </li>
 
           {/* Guestbook 링크 */}
-          <li className={`py-2 ${location.pathname === '/guestbook' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
-            <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
+          <li
+            className={`py-2 ${location.pathname === '/guestbook' ? 'border-b-2 border-rose-400 font-bold dark:border-customRoseMuted' : ''}`}
+          >
+            <div className="flex items-center hover:bg-rose-100 hover:rounded-md dark:hover:bg-customRoseMuted duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegBookmark className="text-md" />
               {/* Guestbook 링크를 클릭하면 "/guestbook" 경로로 이동합니다. */}
               <Link to="/guestbook">Guestbook</Link>
@@ -33,8 +37,10 @@ const HeaderList = () => {
           </li>
 
           {/* Calendar 링크 */}
-          <li className={`py-2 ${location.pathname === '/calendar' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
-            <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
+          <li
+            className={`py-2 ${location.pathname === '/calendar' ? 'border-b-2 border-rose-400 font-bold dark:border-customRoseMuted' : ''}`}
+          >
+            <div className="flex items-center hover:bg-rose-100 hover:rounded-md dark:hover:bg-customRoseMuted duration-100 p-1.5 gap-1.5 pb-1">
               <FaRegCalendarAlt className="text-lg" />
               {/* Calendar 링크를 클릭하면 "/calendar" 경로로 이동합니다. */}
               <Link to="/calendar">Calendar</Link>
@@ -42,8 +48,10 @@ const HeaderList = () => {
           </li>
 
           {/* BucketList 링크 */}
-          <li className={`py-2 ${location.pathname === '/bucketList' ? 'border-b-2 border-rose-400 font-bold' : ''}`}>
-            <div className="flex items-center hover:bg-rose-100 hover:rounded-md duration-100 p-1.5 gap-1.5 pb-1">
+          <li
+            className={`py-2 ${location.pathname === '/bucketList' ? 'border-b-2 border-rose-400 font-bold dark:border-customRoseMuted' : ''}`}
+          >
+            <div className="flex items-center hover:bg-rose-100 hover:rounded-md dark:hover:bg-customRoseMuted duration-100 p-1.5 gap-1.5 pb-1">
               <FaListUl className="text-lg" />
               {/* Calendar 링크를 클릭하면 "/calendar" 경로로 이동합니다. */}
               <Link to="/bucketList">Bucket List</Link>
