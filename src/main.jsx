@@ -83,7 +83,7 @@ const TypingText = () => {
 
 const Main = () => {
   const [loading, setLoading] = useState(true) // 로딩 상태 관리
-  const { theme } = useThemeStore()
+  const { isDarkMode } = useThemeStore()
 
   useEffect(() => {
     // 로딩 화면이 3초 후 종료되도록 타이머 설정
@@ -91,8 +91,17 @@ const Main = () => {
     return () => clearTimeout(timer) // 타이머 정리
   }, [])
 
+  useEffect(() => {
+    // 다크 모드 상태가 변경될 때마다 Tailwind의 dark 클래스를 html 태그에 추가/제거
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [isDarkMode])
+
   return (
-    <div className={`app ${theme}`}>
+    <div className={`app ${isDarkMode ? 'dark' : ''} dark:bg-customGray dark:text-customWhite`}>
       <AnimatePresence>
         {loading ? (
           <motion.div
