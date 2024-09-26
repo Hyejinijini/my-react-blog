@@ -30,14 +30,14 @@ const CommentEditForm = ({ index, comment, comments, editComment, setComments, s
             <textarea
               {...register('commentText', { required: true })}
               rows="3" // 텍스트 영역의 행 수
-              className="border border-gray-300 p-2 w-full rounded-md focus:outline-none focus:ring-rose-500 focus:border-rose-500"
+              className="dark:bg-customGrayMid border border-gray-300 dark:border-[#6C6C6C] p-2 w-full rounded-md focus:outline-none focus:ring-rose-500 focus:border-rose-500 dark:focus:border-customRoseMid"
             />
             <div className="flex justify-end mt-2 space-x-2">
               {/* 취소 버튼 */}
               <button
                 type="button" // 클릭 시 폼 제출 방지
                 onClick={() => setEditingIndex(null)}
-                className="bg-gray-50 text-gray-600 px-4 py-1 rounded-md border font-bold hover:bg-gray-200 duration-100 border-gray-300"
+                className="bg-gray-50 text-gray-600 px-4 py-1 rounded-md border font-bold hover:bg-gray-200 duration-100 border-gray-300 dark:bg-[#5B5B5B] dark:border-customGrayMuted dark:hover:bg-[#6A6A6A] dark:text-customWhite"
               >
                 Cancel
               </button>
@@ -49,7 +49,7 @@ const CommentEditForm = ({ index, comment, comments, editComment, setComments, s
                 className={`px-4 py-1 rounded-md border font-bold duration-100 
                 ${
                   editComment.trim()
-                    ? 'bg-rose-400 text-white border-rose-400 hover:bg-rose-500'
+                    ? 'bg-rose-400 text-white border-rose-400 hover:bg-rose-500 dark:bg-customRoseMid dark:border-customRoseMid dark:hover:bg-customRoseMuted'
                     : 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed opacity-50'
                 }`}
                 // 버튼 비활성화 시 스타일 조정

@@ -56,12 +56,15 @@ const CommentForm = ({ setComments, commentsPerPage, setCurrentPage }) => {
           <textarea
             {...register('newComment', { required: '댓글 내용을 입력해주세요.' })} // 댓글 입력 필드에 대한 유효성 검사
             rows="4" // 텍스트 영역의 행 수
-            className="border border-gray-300 p-2 w-full rounded-md focus:outline-none focus:border-rose-500"
+            className="border border-gray-300 dark:bg-customGrayDark dark:border-[#7C7C7C] p-2 w-full rounded-md focus:outline-none focus:border-rose-500 dark:focus:border-customRoseMid"
             placeholder="여기에 댓글을 작성해주세요..."
           />
 
           <div className="flex justify-end mt-2">
-            <Button type="submit" className="px-4 py-1 font-bold">
+            <Button
+              type="submit"
+              className="px-4 py-1 font-bold dark:bg-customRoseMid dark:border-customRoseMid dark:hover:bg-customRoseMuted dark:text-white"
+            >
               Comment
             </Button>
           </div>
