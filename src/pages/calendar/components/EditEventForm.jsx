@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { ChromePicker } from 'react-color'
+import DatePicker from 'react-datepicker'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, handleCloseModal }) => {
   const { register, handleSubmit, setValue } = useForm({
@@ -14,6 +17,8 @@ const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, ha
 
   const [showColorPicker, setShowColorPicker] = useState(false)
   const [color, setColor] = useState(selectedEvent.color)
+  const [startDate, setStartDate] = useState(selectedEvent.start)
+  const [endDate, setEndDate] = useState(selectedEvent.end)
   const colorPickerRef = useRef(null)
 
   // 색상 변경 시 폼 상태와 로컬 색상 상태 업데이트
@@ -42,17 +47,19 @@ const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, ha
       {/* 모달 내용 */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white py-2 rounded-md border border-gray-300 relative z-50 w-1/2"
+        className="bg-white py-2 rounded-md border border-gray-300 relative z-50 w-1/2 dark:bg-customGrayDark dark:border-customGrayMid"
       >
         {/* 모달 제목 */}
-        <h2 className="text-lg font-bold text-gray-700 mb-4 border-b border-gray-300 pb-4 pt-2 px-4">일정 수정</h2>
+        <h2 className="text-lg font-bold text-gray-700 mb-4 border-b border-gray-300 pb-4 pt-2 px-4 dark:text-customWhite dark:border-customGrayMuted">
+          일정 수정
+        </h2>
 
-        <label className="text-gray-700 px-4">일정</label>
-        <div className="relative mb-4 px-4 flex items-center">
+        <label className="text-gray-700 px-4 dark:text-customWhite">일정</label>
+        <div className="relative mb-4 px-4 flex items-center mt-2">
           <input
             type="text"
             {...register('title', { required: true })}
-            className="border border-gray-300 focus:outline-none focus:border-rose-400 p-2 w-full rounded-md pr-16"
+            className="border border-gray-300 focus:outline-none focus:border-rose-400 p-2 w-full rounded-md pr-16 dark:bg-customGrayDark dark:border-customGrayMid dark:text-customWhite dark:focus:border-customRoseMid"
             placeholder="이벤트 제목"
           />
 
@@ -70,30 +77,42 @@ const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, ha
           )}
         </div>
 
+        {/* 시작 날짜 입력 필드 */}
         <div className="flex flex-col gap-2 mb-4 px-4">
-          <label className="text-gray-700">시작 날짜</label>
-          <input
-            type="date"
-            {...register('startDate', { required: true })}
-            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 rounded-md mb-2 p-2"
-            style={{ border: '1px solid #d1d5db' }} // border 스타일 직접 적용
+          <label className="text-gray-700 dark:text-customWhite">시작 날짜</label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => {
+              setStartDate(date)
+              // react-hook-form에 값 등록
+              setValue('startDate', date)
+            }}
+            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 rounded-md mb-2 p-2 dark:focus:border-customRoseMid dark:border-customGrayMid"
+            dateFormat="yyyy-MM-dd"
+            placeholderText="날짜 선택"
           />
         </div>
 
+        {/* 종료 날짜 입력 필드 */}
         <div className="flex flex-col gap-2 mb-4 px-4">
-          <label className="text-gray-700">종료 날짜</label>
-          <input
-            type="date"
-            {...register('endDate')}
-            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 p-2 rounded-md"
-            style={{ border: '1px solid #d1d5db' }} // border 스타일 직접 적용
+          <label className="text-gray-700 dark:text-customWhite">종료 날짜</label>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => {
+              setEndDate(date)
+              // react-hook-form에 값 등록
+              setValue('endDate', date)
+            }}
+            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 p-2 rounded-md dark:focus:border-customRoseMid dark:border-customGrayMid"
+            dateFormat="yyyy-MM-dd"
+            placeholderText="날짜 선택"
           />
         </div>
 
         <div className="flex justify-end gap-2 p-4">
           <button
             type="submit"
-            className="text-blue-700 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-blue-700 hover:text-white"
+            className="text-blue-700 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-blue-700 hover:text-white dark:bg-[#4A90E2] dark:border-[#357ABD] dark:hover:bg-[#7a7d80] dark:text-white"
           >
             저장
           </button>
@@ -101,7 +120,7 @@ const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, ha
           <button
             type="button"
             onClick={handleDeleteEvent}
-            className="text-rose-700 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-700 hover:text-white"
+            className="text-rose-700 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-700 hover:text-white dark:bg-[#E57373] dark:border-[#C62828] dark:hover:bg-[#C62828] dark:text-white"
           >
             삭제
           </button>

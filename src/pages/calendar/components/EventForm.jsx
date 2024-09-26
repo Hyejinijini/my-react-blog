@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { ChromePicker } from 'react-color'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
   const { handleSubmit, register, setValue } = useForm({
@@ -15,6 +17,10 @@ const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
   const [showColorPicker, setShowColorPicker] = useState(false)
   const [color, setColor] = useState(newEvent.color || '#ffffff')
   const colorPickerRef = useRef(null)
+
+  // 날짜 상태 변수
+  const [startDate, setStartDate] = useState(newEvent.startDate || null)
+  const [endDate, setEndDate] = useState(newEvent.endDate || null)
 
   // 색상 변경 시 폼 상태와 로컬 색상 상태 업데이트
   const handleColorChange = (color) => {
@@ -42,16 +48,19 @@ const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
       {/* 모달 내용 */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white py-2 rounded-md border border-gray-300 relative z-50 w-1/2"
+        className="bg-white py-2 rounded-md border border-gray-300 relative z-50 w-1/2 dark:bg-customGrayDark dark:border-customGrayMid"
       >
         {/* 모달 제목 */}
-        <h2 className="text-lg font-bold text-gray-700 mb-4 border-b border-gray-300 pb-4 pt-2 px-4">일정 추가</h2>
-        <label className="text-gray-700 px-4">일정</label>
-        <div className="relative mb-4 px-4 flex items-center">
+        <h2 className="text-lg font-bold text-gray-700 mb-4 border-b dark:text-customWhite border-gray-300 dark:border-customGrayMuted pb-4 pt-2 px-4">
+          일정 추가
+        </h2>
+
+        <label className="text-gray-700 px-4 dark:text-customWhite">일정</label>
+        <div className="relative mb-4 px-4 flex items-center mt-2">
           <input
             type="text"
             {...register('title', { required: true })}
-            className="border border-gray-300 focus:outline-none focus:border-rose-400 p-2 w-full rounded-md pr-16"
+            className="border border-gray-300 focus:outline-none focus:border-rose-400 p-2 w-full rounded-md pr-16 dark:bg-customGrayDark dark:border-customGrayMid dark:text-customWhite dark:focus:border-customRoseMid"
             placeholder="일정을 입력해주세요."
           />
 
@@ -69,22 +78,33 @@ const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
           )}
         </div>
 
-        {/* 날짜 입력 필드 */}
+        {/* 시작 날짜 입력 필드 */}
         <div className="flex flex-col gap-2 mb-4 px-4">
-          <label className="text-gray-700">시작 날짜</label>
-          <input
-            type="date"
-            {...register('startDate', { required: true })}
-            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 rounded-md mb-2 p-2"
+          <label className="text-gray-700 dark:text-customWhite">시작 날짜</label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => {
+              setStartDate(date)
+              setValue('startDate', date ? date.toISOString().split('T')[0] : '') // ISO 형식으로 저장
+            }}
+            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 rounded-md mb-2 p-2 dark:border-customGrayMid dark:focus:border-customRoseMid"
+            dateFormat="yyyy-MM-dd"
+            placeholderText="날짜 선택"
           />
         </div>
 
+        {/* 종료 날짜 입력 필드 */}
         <div className="flex flex-col gap-2 px-4">
-          <label className="text-gray-700">종료 날짜</label>
-          <input
-            type="date"
-            {...register('endDate')}
-            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 p-2 rounded-md"
+          <label className="text-gray-700 dark:text-customWhite">종료 날짜</label>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => {
+              setEndDate(date)
+              setValue('endDate', date ? date.toISOString().split('T')[0] : '') // ISO 형식으로 저장
+            }}
+            className="w-full h-10 cursor-pointer bg-transparent border border-gray-300 focus:outline-none focus:border-rose-400 p-2 rounded-md dark:border-customGrayMid dark:focus:border-customRoseMid"
+            dateFormat="yyyy-MM-dd"
+            placeholderText="날짜 선택"
           />
         </div>
 
@@ -92,7 +112,7 @@ const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
         <div className="flex justify-end mt-6 gap-2 p-4">
           <button
             type="submit"
-            className="text-rose-700 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-700 hover:text-white"
+            className="text-white bg-rose-400 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-500 hover:text-white dark:bg-customRoseMid dark:border-customRoseMuted dark:hover:bg-customRoseMuted"
           >
             추가
           </button>
@@ -100,7 +120,7 @@ const EventForm = ({ newEvent, handleAddEvent, handleCloseModal }) => {
           <button
             type="button"
             onClick={handleCloseModal}
-            className="text-gray-700 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-gray-700 hover:text-white"
+            className="bg-gray-500 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-gray-600 hover:text-white dark:bg-customGrayMid text-customWhite dark:hover:bg-[#636363] dark:border-customGrayDark"
           >
             닫기
           </button>
