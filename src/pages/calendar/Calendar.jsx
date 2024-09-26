@@ -12,6 +12,7 @@ import '@assets/styles/css/calendar/calendar.css'
 import Header from '@common/components/header/Header.jsx'
 import Footer from '@common/components/footer/Footer.jsx'
 import MetaTags from '@common/components/etc/MetaTags.jsx'
+import ThemeSwitcher from '@common/components/etc/ThemeSwitcher.jsx'
 
 // components
 import EventModal from '@pages/calendar/components/EventModal.jsx'
@@ -187,6 +188,8 @@ const Calendar = () => {
     <>
       {/* 메타 태그를 설정하여 SEO 및 브라우저 탭 제목을 설정 */}
       <MetaTags subTitle={' | Calendar'} description={'달력 페이지입니다.'} keywords={'calendar'} />
+
+      <ThemeSwitcher />
 
       {/* // 헤더 */}
       <Header />
