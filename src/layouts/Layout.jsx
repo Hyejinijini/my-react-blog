@@ -4,10 +4,13 @@ import React from 'react'
 import Header from '@common/components/header/Header.jsx'
 import SideBar from '@common/components/sidebar/SideBar.jsx'
 import Footer from '@common/components/footer/Footer.jsx'
+import ThemeSwitcher from '@common/components/etc/ThemeSwitcher.jsx'
 
 const Layout = ({ children }) => {
   return (
     <div>
+      <ThemeSwitcher />
+
       {/* 헤더 */}
       <Header />
 

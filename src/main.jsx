@@ -8,7 +8,6 @@ import router from '@/router.jsx'
 import '@assets/styles/css/index.css'
 
 import useThemeStore from '@store/useThemeStore.js'
-import ThemeSwitcher from '@common/components/etc/ThemeSwitcher.jsx'
 
 async function enableMocking() {
   // if (process.env.NODE_ENV !== 'development') {
@@ -98,7 +97,6 @@ const Main = () => {
     } else {
       document.documentElement.classList.remove('dark')
     }
-    document.body.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
   return (
@@ -129,7 +127,6 @@ const Main = () => {
         ) : (
           <>
             <RouterProvider router={router} />
-            <ThemeSwitcher />
           </>
         )}
       </AnimatePresence>
