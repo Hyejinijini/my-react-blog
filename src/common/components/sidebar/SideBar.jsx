@@ -66,7 +66,7 @@ const SideBar = () => {
           {/* 소셜 링크 */}
           {!editMode && (
             <>
-              <hr className="border-1 border-rose-100 mb-6 md:w-64 lg:w-72" />
+              <hr className="border-1 border-rose-100 dark:border-[#A8A8A8] mb-6 md:w-64 lg:w-72" />
               <GoToLink editMode={editMode} profile={profile} />
             </>
           )}

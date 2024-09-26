@@ -168,7 +168,7 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
                   <button
                     type="button"
                     onClick={() => handleRemoveClick(index)}
-                    className="text-red-500 rounded-md h-8 w-8 flex items-center justify-center hover:bg-rose-400 hover:text-white duration-100"
+                    className="text-red-500 rounded-md h-8 w-8 flex items-center justify-center hover:bg-rose-400 hover:text-white duration-100 dark:hover:bg-customRoseMuted"
                   >
                     X
                   </button>
@@ -177,7 +177,7 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
               <button
                 type="button"
                 onClick={socialAppend}
-                className="dark:text-customGray border border-gray-300 dark:border-customGrayMid bg-gray-50 dark:bg-customGrayMuted rounded-md h-8 hover:bg-gray-200 dark:hover:bg-[#A0A0A0] dark:hover:text-[#FFFFFF] duration-100 w-full mt-1 mb-1"
+                className="dark:text-customWhite border border-gray-300 dark:border-[#B0B0B0] bg-gray-50 dark:bg-[#4F4F4F] rounded-md h-8 hover:bg-gray-200 dark:hover:bg-customGrayMid dark:hover:text-customWhite duration-100 w-full mt-1 mb-1"
               >
                 Add Social Account
               </button>
@@ -187,14 +187,14 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
               {/* 폼 데이터를 제출하여 프로필을 업데이트 */}
               <button
                 type="submit"
-                className="border border-rose-400 dark:border-customRoseMuted bg-rose-400 dark:bg-customRoseMid text-white rounded-md h-8 hover:bg-rose-500 dark:hover:bg-[#D77A85] duration-100 w-1/6"
+                className="border border-rose-400 dark:border-customRoseMuted bg-rose-400 dark:bg-customRoseMuted text-white rounded-md h-8 hover:bg-rose-500 dark:hover:bg-customRoseMid dark:text-customWhite duration-100 w-1/6"
               >
                 Save
               </button>
               <button
                 type="button"
                 onClick={handleCancelClick}
-                className="border border-gray-300 dark:border-customGrayMid bg-gray-50 dark:bg-customGrayMuted rounded-md h-8 hover:bg-gray-200 dark:hover:bg-[#A0A0A0] dark:text-customGray dark:hover:text-[#FFFFFF] duration-100 w-1/4"
+                className="border border-gray-300 dark:border-customGrayMuted bg-gray-50 dark:bg-customGrayDark rounded-md h-8 hover:bg-gray-200 dark:hover:bg-[#474747] dark:hover:text-[#FFFFFF] dark:text-customWhite duration-100 w-1/4"
               >
                 Cancel
               </button>
@@ -203,7 +203,7 @@ const SideBarForm = ({ profile, editMode, setEditMode, setProfile }) => {
         ) : (
           <button
             type="button"
-            className="dark:text-customWhite border border-rose-200 dark:border-customRoseMuted bg-rose-50 dark:bg-customRoseMid rounded-md h-8 hover:bg-rose-100 dark:hover:bg-customRoseDark duration-100 mb-6 sm:w-full w-full md:w-64 lg:w-72 px-4"
+            className="dark:text-customWhite border border-rose-200 dark:border-customRoseMid bg-rose-50 dark:bg-customRoseMid rounded-md h-8 hover:bg-rose-100 dark:hover:bg-customRoseMuted duration-100 mb-6 sm:w-full w-full md:w-64 lg:w-72 px-4"
             onClick={handleEditClick}
           >
             Edit profile
