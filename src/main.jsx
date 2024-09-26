@@ -98,6 +98,7 @@ const Main = () => {
     } else {
       document.documentElement.classList.remove('dark')
     }
+    document.body.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
   return (

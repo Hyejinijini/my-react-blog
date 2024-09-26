@@ -12,9 +12,9 @@ const GoToLink = ({ editMode, profile }) => {
             profile.links.map((link, index) => (
               <li key={index} className="mt-4 flex items-center gap-2">
                 <span>
-                  <HiOutlineLink className="text-gray-600 text-lg" />
+                  <HiOutlineLink className="text-gray-600 text-lg dark:text-customWhite" />
                 </span>
-                <a href={link.url} className="hover:underline hover:text-rose-500">
+                <a href={link.url} className="hover:underline hover:text-rose-500 dark:hover:text-customRoseMid">
                   {link.url}
                 </a>
               </li>

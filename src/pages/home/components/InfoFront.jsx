@@ -15,7 +15,7 @@ const InfoFront = ({ isFlipped, handleCardClick }) => {
     <>
       {/* 앞면 */}
       <motion.div
-        className={`${styles.cardFront} flex flex-col items-center justify-center p-6`}
+        className={`${styles.cardFront} flex flex-col items-center justify-center p-6 dark:bg-customGrayDark dark:border-customGrayMid`}
         // 카드가 뒤집힐 때 뒷면이 보이지 않도록 설정
         style={{ backfaceVisibility: 'hidden' }}
         // 카드가 뒤집힌 상태일 때 앞면의 투명도를 0 으로 설정하여 보이지 않게 하고, 앞면이 보일 때는 투명도를 1로 설정하여 보이게 함.
@@ -28,7 +28,10 @@ const InfoFront = ({ isFlipped, handleCardClick }) => {
         <FrontIntro />
 
         {/* 아이콘 */}
-        <FaArrowRight className={`${styles.arrowIcon} ${styles.front} cursor-pointer`} onClick={handleCardClick} />
+        <FaArrowRight
+          className={`${styles.arrowIcon} ${styles.front} cursor-pointer dark:text-customRoseMid`}
+          onClick={handleCardClick}
+        />
       </motion.div>
     </>
   )

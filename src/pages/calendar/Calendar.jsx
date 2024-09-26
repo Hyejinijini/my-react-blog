@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import useThemeStore from '@store/useThemeStore'
 
 // css
 // 달력의 스타일을 설정
@@ -17,6 +18,8 @@ import EventModal from '@pages/calendar/components/EventModal.jsx'
 import EditEventModal from '@pages/calendar/components/EditEventModal.jsx'
 
 const Calendar = () => {
+  const { isDarkMode } = useThemeStore() // Zustand 스토어 사용
+
   // 이벤트 상태를 로컬스토리지에서 불러오거나 기본 이벤트 배열로 초기화
   const [events, setEvents] = useState(() => {
     const storedEvents = localStorage.getItem('events')
@@ -187,9 +190,10 @@ const Calendar = () => {
 
       {/* // 헤더 */}
       <Header />
-      <div className="p-8 md:px-20 md:py-12 lg:px-32 lg:pb-28 xl:px-60 xl:py:30 sm:px-12 sm:p-16">
+      <div className={`p-8 md:px-20 md:py-12 lg:px-32 lg:pb-28 xl:px-60 xl:py:30 sm:px-12 sm:p-16`}>
         {/* FullCanlendar 컴포넌트를 사용하여 달력을 렌더링 */}
         <FullCalendar
+          className={`${isDarkMode ? 'dark' : ''}`}
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth" // 기본 뷰 설정(월별)
           events={events.map((event) => ({
@@ -215,6 +219,7 @@ const Calendar = () => {
             selectedEvent={selectedEvent} // 선택된 이벤트 정보를 전달
             handleUpdateEvent={handleUpdateEvent} // 이벤트 수정 함수를 전달
             handleDeleteEvent={handleDeleteEvent} // 이벤트 삭제 함수를 전달
+            handleCloseModal={handleCloseModal}
           />
         )}
       </div>

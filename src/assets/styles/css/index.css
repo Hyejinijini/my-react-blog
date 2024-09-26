@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  transition:
+    background-color 0.3s,
+    color 0.3s; /* 부드러운 전환 효과 */
+}
+
 /* 로딩 화면 스타일 */
 .loading-screen {
   position: fixed;
@@ -39,4 +45,9 @@
 .react-colorful__alpha {
   border-radius: 2px;
   cursor: pointer;
+}
+
+.dark {
+  background-color: #262626; /* 다크 모드 배경색 */
+  color: #f7f7f7; /* 다크 모드 텍스트 색상 */
 }

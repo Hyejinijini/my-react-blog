@@ -74,7 +74,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
   return (
     // 애니메이션 효과가 적용된 div
     <motion.div
-      className={`${styles.cardBack} p-4 flex flex-col justify-between items-center rounded-lg bg-white ${isFlipped ? 'h-full' : 'h-96'}`}
+      className={`${styles.cardBack} p-4 flex flex-col justify-between items-center rounded-lg bg-white dark:bg-customGrayDark dark:border-customGrayMid ${isFlipped ? 'h-full' : 'h-96'}`}
       // 카드의 뒷면을 숨기고 회전시킴
       style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
       animate={{ opacity: isFlipped ? 1 : 0 }}
@@ -85,19 +85,22 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
         {/* 상단 바: 타이틀과 아이콘 */}
         <div className="flex items-center justify-between mb-4">
           {/* 타이틀 */}
-          <div className="text-lg font-bold text-rose-600">HYEHYE / 프로필</div>
+          <div className="text-lg font-bold text-rose-600 dark:text-customRoseMid">HYEHYE / 프로필</div>
 
           {/* 아이콘과 수정 버튼 */}
           <div className="flex items-center">
             {/* 돌아가기 버튼 */}
-            <FaArrowLeft className={`${styles.arrowIcon} cursor-pointer text-rose-600`} onClick={handleCardClick} />
+            <FaArrowLeft
+              className={`${styles.arrowIcon} cursor-pointer text-rose-600 dark:text-customRoseMid`}
+              onClick={handleCardClick}
+            />
 
             {/* 수정/저장 버튼 */}
             <button onClick={isEditing ? handleSaveClick : handleEditClick} className={`ml-4`}>
               {isEditing ? (
-                <FiSave className="hover:text-rose-500 duration-200 hover:scale-110" />
+                <FiSave className="hover:text-rose-500 duration-200 hover:scale-110 dark:hover:text-customRoseMuted" />
               ) : (
-                <FiEdit2 className="hover:text-rose-500 duration-200 hover:scale-110" />
+                <FiEdit2 className="hover:text-rose-500 duration-200 hover:scale-110 dark:hover:text-customRoseMuted" />
               )}
             </button>
           </div>
@@ -107,12 +110,12 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           {isEditing ? (
             // 수정 모드일 때 렌더링되는 폼
-            <div className="border-t border-rose-200 p-1.5">
+            <div className="border-t border-rose-200 p-1.5 dark:border-[#A8A8A8]">
               <ul className="space-y-4">
                 {Object.keys(profileData).map((key) => (
-                  <li key={key} className={styles.profileItem}>
+                  <li key={key} className={`${styles.profileItem} dark:bg-customGrayDark`}>
                     {/* 필드 아이콘 */}
-                    <div className={styles.profileIcon}>
+                    <div className={`${styles.profileIcon} dark:bg-customRoseMid`}>
                       <span className="text-lg font-bold p-4">{renderProfileIcon(key)}</span>
                     </div>
 
@@ -122,7 +125,7 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
                       name={key}
                       {...register(key)} // react-hook-form의 register 함수로 필드 등록
                       defaultValue={profileData[key]} // 기본값으로 현재 프로필 데이터 설정
-                      className="text-sm text-gray-800 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500"
+                      className="text-sm text-gray-800 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 dark:bg-[#474747] dark:text-customWhite dark:border-customGrayMid dark:focus:border-customRoseMid"
                     />
                   </li>
                 ))}
@@ -130,33 +133,33 @@ const InfoBack = ({ isFlipped, handleCardClick }) => {
             </div>
           ) : (
             // 수정 모드가 아닐 때 프로필 데이터 표시
-            <div className="p-1.5 border-t border-rose-200">
+            <div className="p-1.5 border-t border-rose-200 dark:border-[#A8A8A8]">
               <ul className="space-y-4">
-                <li className={styles.profileItem}>
-                  <div className={styles.profileIcon}>
+                <li className={`${styles.profileItem} dark:bg-customGrayDark`}>
+                  <div className={`${styles.profileIcon} dark:bg-customRoseMid`}>
                     <span className="text-lg font-bold">N</span>
                   </div>
-                  <span className="text-sm text-gray-800">이름: {profileData.name}</span>
+                  <span className="text-sm text-gray-800 dark:text-customWhite">이름: {profileData.name}</span>
                 </li>
-                <li className={styles.profileItem}>
-                  <div className={styles.profileIcon}>
+                <li className={`${styles.profileItem} dark:bg-customGrayDark`}>
+                  <div className={`${styles.profileIcon} dark:bg-customRoseMid`}>
                     <span className="text-lg font-bold">B</span>
                   </div>
-                  <span className="text-sm text-gray-800">생년월일: {profileData.birthDate}</span>
+                  <span className="text-sm text-gray-800 dark:text-customWhite">생년월일: {profileData.birthDate}</span>
                 </li>
-                <li className={styles.profileItem}>
-                  <div className={styles.profileIcon}>
+                <li className={`${styles.profileItem} dark:bg-customGrayDark`}>
+                  <div className={`${styles.profileIcon} dark:bg-customRoseMid`}>
                     <span className="text-lg font-bold">M</span>
                   </div>
-                  <span className="text-sm text-gray-800 hover:underline hover:text-rose-400">
+                  <span className="text-sm text-gray-800 dark:text-customWhite hover:underline hover:text-rose-400 dark:hover:text-customRoseMid">
                     메일: <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
                   </span>
                 </li>
-                <li className={styles.profileItem}>
-                  <div className={styles.profileIcon}>
+                <li className={`${styles.profileItem} dark:bg-customGrayDark`}>
+                  <div className={`${styles.profileIcon} dark:bg-customRoseMid`}>
                     <span className="text-lg font-bold">P</span>
                   </div>
-                  <span className="text-sm text-gray-800">번호: {profileData.phone}</span>
+                  <span className="text-sm text-gray-800 dark:text-customWhite">번호: {profileData.phone}</span>
                 </li>
               </ul>
             </div>

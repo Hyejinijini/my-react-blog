@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import { motion } from 'framer-motion'
 
+import useThemeStore from '@store/useThemeStore.js'
+
 // BubbleChart 함수 정의
 function BubbleChart(
   data,
@@ -57,8 +59,8 @@ function BubbleChart(
     .create('svg')
     .attr('width', width)
     .attr('height', height)
-    .attr('viewBox', [-marginLeft, -marginTop, width, height])
-    .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+    .attr('viewBox', [0, 0, width, height]) // 여백을 줄이기 위해 margin을 0으로 설정
+    .attr('style', 'max-width: 100%; height: 600px;') // auto, intrinsic 제거
     .attr('fill', 'currentColor')
     .attr('font-size', 10)
     .attr('font-family', 'sans-serif')
@@ -117,23 +119,28 @@ const BubbleChartComponent = ({ data, options }) => {
     svgRef.current.appendChild(svgElement)
   }, [data, options])
 
-  return <div ref={svgRef}></div>
+  return <div ref={svgRef} style={{ margin: 0, padding: 0 }}></div>
 }
 
 // Test 컴포넌트
 const Test = () => {
+  const { isDarkMode } = useThemeStore()
+
   const data = [
-    { name: 'Node.js', value: 10, color: '#ffe4e6' },
-    { name: 'Zustand', value: 10, color: '#ffe4e6' },
-    { name: 'Storybook', value: 10, color: '#ffe4e6' },
-    { name: 'Axios', value: 15, color: '#fecdd3' },
-    { name: 'React Hook Form', value: 20, color: '#fda4af' },
-    { name: 'JavaScript', value: 30, color: '#fb7185' },
-    { name: 'Tailwind CSS', value: 35, color: '#f43f5e' },
-    { name: 'CSS', value: 35, color: '#e11d48' },
-    { name: 'React', value: 40, color: '#be123c' },
-    { name: 'HTML', value: 45, color: '#9f1239' }
-  ]
+    { name: 'Node.js', value: 10, color: '#d68e9a', darkColor: '#d68e9a' }, // 부드러운 로즈
+    { name: 'Zustand', value: 10, color: '#d68e9a', darkColor: '#d68e9a' }, // 동일
+    { name: 'Storybook', value: 10, color: '#d68e9a', darkColor: '#d68e9a' }, // 동일
+    { name: 'Axios', value: 15, color: '#e8a3b2', darkColor: '#e8a3b2' }, // 따뜻한 핑크
+    { name: 'React Hook Form', value: 20, color: '#f2b2c8', darkColor: '#f2b2c8' }, // 연한 핑크
+    { name: 'JavaScript', value: 30, color: '#f5a3b8', darkColor: '#f5a3b8' }, // 부드러운 로즈
+    { name: 'Tailwind CSS', value: 35, color: '#f56d87', darkColor: '#f56d87' }, // 강한 로즈
+    { name: 'CSS', value: 35, color: '#f3a1b6', darkColor: '#f3a1b6' }, // 부드러운 핑크
+    { name: 'React', value: 40, color: '#e66477', darkColor: '#e66477' }, // 조금 더 어두운 로즈
+    { name: 'HTML', value: 45, color: '#e0546c', darkColor: '#e0546c' } // 깊이 있는 로즈
+  ].map((item) => ({
+    ...item,
+    color: isDarkMode ? item.darkColor : item.color // 다크모드 상태에 따른 색상 변경
+  }))
 
   const options = {
     name: (d) => d.name,
@@ -157,6 +164,7 @@ const Test = () => {
         right: 50,
         bottom: 50
       }}
+      style={{ margin: 0 }}
     >
       <BubbleChartComponent data={data} options={options} className="flex items-center justify-center" />
     </motion.div>

@@ -22,7 +22,7 @@ const CommentEditDelete = ({ setEditingIndex, setEditComment, index, setComments
       {/* 댓글 수정 버튼 */}
       <button
         onClick={() => handleEditClick(index)}
-        className="text-blue-500 py-1 rounded-md text-sm px-1 hover:font-bold duration-200"
+        className="text-blue-500 dark:text-[#4F83C2] py-1 rounded-md text-sm px-1 hover:font-bold duration-200"
       >
         Edit
       </button>
@@ -30,7 +30,7 @@ const CommentEditDelete = ({ setEditingIndex, setEditComment, index, setComments
       {/* 댓글 삭제 버튼 */}
       <button
         onClick={() => handleDeleteClick(index)}
-        className="text-red-500 px-1 py-1 rounded-md text-sm hover:font-bold duration-200"
+        className="text-red-500 dark:text-[#D94A3A] px-1 py-1 rounded-md text-sm hover:font-bold duration-200"
       >
         Delete
       </button>

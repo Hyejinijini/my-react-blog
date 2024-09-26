@@ -53,3 +53,51 @@
 .fc-button.fc-next-button:hover {
   background-color: #f43f5e !important;
 }
+
+.dark {
+  color: #f7f7f7;
+}
+
+.dark .fc-day {
+  border: 1px solid #b0b0b0; /* 밝은 보더 색상 */
+}
+
+.dark .fc-day-sun a {
+  color: #ff6b6b; /* 부드러운 빨간색 */
+}
+
+.dark .fc-day-sat a {
+  color: #4d94ff; /* 연한 파란색 */
+}
+
+.dark .completed {
+  text-decoration: line-through;
+  color: #b0b0b0;
+}
+
+/* 현재 날짜 색상 */
+.dark .fc-day-today {
+  background-color: #3d3d3d !important;
+}
+
+.dark .fc-button.fc-today-button {
+  background-color: #eb8a95 !important;
+  color: #f7f7f7 !important;
+  border: none !important;
+}
+
+.dark .fc-button.fc-today-button:hover {
+  background-color: #d76879 !important;
+}
+
+.dark .fc-button.fc-prev-button,
+.dark .fc-button.fc-next-button {
+  background-color: #eb8a95 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.dark .fc-button.fc-prev-button:hover,
+.dark .fc-button.fc-next-button:hover {
+  background-color: #d76879 !important;
+}

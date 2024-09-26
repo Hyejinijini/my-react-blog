@@ -27,10 +27,10 @@ const CommentSection = ({ comments, setComments, currentPage, commentsPerPage })
           {currentComments.length > 0 ? (
             currentComments.map((comment, index) => (
               <li key={comment.id} className="flex items-start space-x-4">
-                <FaCircleUser className="w-10 h-10 rounded-full text-rose-400" />
+                <FaCircleUser className="w-10 h-10 rounded-full text-rose-400 dark:text-customRoseMid" />
 
                 {/* 댓글 내용 및 헤더를 담는 컨테이너 */}
-                <div className="flex-1 border border-rose-200 rounded-lg bg-rose-50 overflow-hidden">
+                <div className="flex-1 border border-rose-200 rounded-lg dark:border-[#4A4A4A] bg-rose-50 dark:bg-customGrayDark overflow-hidden">
                   {/* 댓글 헤더: 작성자와 타임스탬프, 수정/삭제 버튼 */}
                   <CommentHeader
                     comment={comment}
@@ -42,7 +42,7 @@ const CommentSection = ({ comments, setComments, currentPage, commentsPerPage })
                   />
 
                   {/* 댓글 내용을 수정할 수 있는 폼 */}
-                  <div className="bg-white p-4 relative">
+                  <div className="bg-white dark:bg-[#4F4F4F] p-4 relative">
                     <CommentEditForm
                       index={index}
                       comment={comment}
