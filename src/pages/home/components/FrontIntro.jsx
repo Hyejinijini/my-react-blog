@@ -12,7 +12,7 @@ const FrontIntro = () => {
         더욱 멋진 웹을 만들기 위해 노력하고 있습니다.
       </p>
 
-      <p className="relative inline-block text-base text-rose-300 pt-1 mb-1 gove">
+      <p className="relative inline-block text-base text-rose-300 dark:text-customRoseLight pt-1 mb-1 gove">
         <span>프로필 보러가기</span>
       </p>
     </>
