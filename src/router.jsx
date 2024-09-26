@@ -9,7 +9,6 @@ import NotFound from '@common/components/etc/NotFound.jsx'
 // pages
 import home from '@pages/home/router.jsx'
 import guestbook from '@pages/guestbook/router.jsx'
-import bucketList from '@pages/bucketList/router.jsx'
 const Calendar = lazy(() => import('@pages/calendar/Calendar.jsx'))
 
 // 라우터 설정
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
         </Suspense>
       </Layout>
     ),
-    children: [...home, ...guestbook, ...bucketList],
+    children: [...home, ...guestbook],
     errorElement: <NotFound />
   },
 
