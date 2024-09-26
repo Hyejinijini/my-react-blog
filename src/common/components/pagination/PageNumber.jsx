@@ -46,7 +46,7 @@ const PageNumber = ({ currentPage, totalPages, onPageChange }) => {
           key={index}
           // 페이지 번호가 숫자인 경우 onPageChange 함수를 호출하여 해당 페이지로 이동 (셍략 부호는 대상이 아니기 때문에)
           onClick={() => typeof page === 'number' && onPageChange(page)}
-          className={`px-4 py-2 text-base ${currentPage === page ? 'text-white font-bold bg-rose-400 rounded-full' : 'text-gray-700'} ${page === '···' ? 'text-gray-500' : ''} hover:underline`}
+          className={`px-4 py-2 text-base ${currentPage === page ? 'text-white font-bold bg-rose-400 dark:bg-customRoseMid dark:text-customWhite rounded-full' : 'text-gray-700'} ${page === '···' ? 'text-gray-500' : ''} hover:underline`}
           disabled={page === '···'}
         >
           {page}

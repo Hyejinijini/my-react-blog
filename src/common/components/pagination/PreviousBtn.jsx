@@ -10,7 +10,7 @@ const PreviousBtn = ({ onPageChange, currentPage }) => {
         disabled={currentPage === 1}
         className="px-4 mx-2 text-xl text-gray-600 font-bold rounded-full disabled:opacity-50 hover:cursor-pointer"
       >
-        <code className="text-rose-400">&lt;</code>
+        <code className="text-rose-400 dark:text-customRoseMid">&lt;</code>
       </button>
     </>
   )
