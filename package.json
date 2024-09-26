@@ -24,12 +24,14 @@
     "@rollup/plugin-terser": "^0.4.4",
     "axios": "^1.7.2",
     "d3": "^7.9.0",
+    "date-fns": "^4.1.0",
     "framer-motion": "^11.3.28",
     "fullcalendar": "^6.1.15",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.3.1",
     "react-color": "^2.19.3",
+    "react-datepicker": "^7.4.0",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.52.1",
@@ -70,5 +72,6 @@
     "workerDirectory": [
       "public"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
