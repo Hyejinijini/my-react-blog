@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import useThemeStore from '@store/useThemeStore'
 
@@ -184,6 +185,21 @@ const Calendar = () => {
     </div>
   )
 
+  // 이벤트가 드래그 앤 드롭으로 옮겨졌을 때 호출되는 함수
+  const handleEventDrop = (info) => {
+    const updatedEvent = {
+      id: info.event.id,
+      title: info.event.title,
+      start: info.event.startStr, // 새로운 시작 날짜
+      end: info.event.endStr || info.event.startStr, // 새로운 종료 날짜 (없으면 시작 날짜와 동일)
+      color: info.event.backgroundColor,
+      completed: info.event.extendedProps.completed
+    }
+
+    // 이벤트를 업데이트하여 상태에 반영
+    setEvents((prevEvents) => prevEvents.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)))
+  }
+
   return (
     <>
       {/* 메타 태그를 설정하여 SEO 및 브라우저 탭 제목을 설정 */}
@@ -197,19 +213,33 @@ const Calendar = () => {
         {/* FullCanlendar 컴포넌트를 사용하여 달력을 렌더링 */}
         <FullCalendar
           className={`${isDarkMode ? 'dark' : ''}`}
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth" // 기본 뷰 설정(월별)
+          plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]} // interactionPlugin 필요
+          initialView="dayGridMonth"
+          headerToolbar={{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          }}
+          buttonText={{
+            today: '오늘',
+            month: '월간',
+            week: '주간',
+            day: '일일'
+          }}
           events={events.map((event) => ({
-            ...event, // 이벤트 색상 설정
+            ...event,
             start: event.start,
             end: event.end,
             backgroundColor: event.color,
             borderColor: event.color
           }))}
-          dateClick={handleDateClick} // 날짜 클릭 이벤트 핸들러
-          eventClick={handleEventClick} // 이벤트 클릭 이벤트 핸들러
-          eventContent={renderEventContent} // 이벤트 내용 렌더링 함수
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
+          eventContent={renderEventContent}
+          editable={true} // 이벤트를 드래그해서 옮길 수 있도록 설정
+          eventDrop={handleEventDrop} // 이벤트 드래그 후 위치가 변경되면 호출되는 핸들러
         />
+
         {showModal && (
           <EventModal
             newEvent={newEvent} // 새 이벤트 상태를 전달
