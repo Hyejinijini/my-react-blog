@@ -1,13 +1,14 @@
-/* 일요일 날짜: 빨간색 */
+/* 일요일 날짜 색상 */
 .fc-day-sun a {
   color: red;
 }
 
-/* 토요일 날짜: 파란색 */
+/* 토요일 날짜 색상 */
 .fc-day-sat a {
   color: blue;
 }
 
+/* 완료된 이벤트 */
 .completed {
   text-decoration: line-through;
   color: gray;
@@ -56,6 +57,7 @@
   transition-duration: 300ms;
 }
 
+/* 월간, 주간, 일일 버튼 스타일 */
 .fc-dayGridMonth-button,
 .fc-timeGridWeek-button,
 .fc-timeGridDay-button {
@@ -64,6 +66,7 @@
   border: none !important;
 }
 
+/* 월간, 주간, 일일 버튼 호버 스타일  */
 .fc-dayGridMonth-button:hover,
 .fc-timeGridWeek-button:hover,
 .fc-timeGridDay-button:hover {
@@ -71,22 +74,28 @@
   transition-duration: 300ms;
 }
 
+/* 다크모드 */
+/* 텍스트 색상 */
 .dark {
   color: #f7f7f7;
 }
 
+/* 달력 보더 색상 */
 .dark .fc-day {
   border: 1px solid #b0b0b0; /* 밝은 보더 색상 */
 }
 
+/* 일요일 날짜 색상 */
 .dark .fc-day-sun a {
   color: #ff6b6b; /* 부드러운 빨간색 */
 }
 
+/* 토요일 날짜 색상 */
 .dark .fc-day-sat a {
   color: #4d94ff; /* 연한 파란색 */
 }
 
+/* 완료된 이벤트 */
 .dark .completed {
   text-decoration: line-through;
   color: #b0b0b0;
@@ -97,16 +106,19 @@
   background-color: #333333 !important;
 }
 
+/* 오늘 버튼 스타일 */
 .dark .fc-button.fc-today-button {
   background-color: #757575 !important;
   color: #e0e0e0 !important;
   border: none !important;
 }
 
+/* 오늘 버튼 호버 스타일 */
 .dark .fc-button.fc-today-button:hover {
   background-color: #616161 !important;
 }
 
+/* 이전, 다음 버튼 스타일 */
 .dark .fc-button.fc-prev-button,
 .dark .fc-button.fc-next-button {
   background-color: #757575 !important;
@@ -114,11 +126,13 @@
   border: none !important;
 }
 
+/* 이전, 다음 버튼 호버 스타일 */
 .dark .fc-button.fc-prev-button:hover,
 .dark .fc-button.fc-next-button:hover {
   background-color: #616161 !important;
 }
 
+/* 월간, 주간, 일일 버튼 스타일 */
 .dark .fc-dayGridMonth-button,
 .dark .fc-timeGridWeek-button,
 .dark .fc-timeGridDay-button {
@@ -127,6 +141,7 @@
   border: none !important;
 }
 
+/* 월간, 주간, 일일 버튼 호버 스타일 */
 .dark .fc-dayGridMonth-button:hover,
 .dark .fc-timeGridWeek-button:hover,
 .dark .fc-timeGridDay-button:hover {
