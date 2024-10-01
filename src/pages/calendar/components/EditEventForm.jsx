@@ -112,7 +112,7 @@ const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, ha
         <div className="flex justify-end gap-2 p-4">
           <button
             type="submit"
-            className="text-blue-700 duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:bg-blue-700 hover:text-white dark:bg-[#4A90E2] dark:border-[#357ABD] dark:hover:bg-[#7a7d80] dark:text-white"
+            className="text-white bg-[#007BFF] hover:bg-[#0056b3] duration-200 px-2 py-1 rounded text-sm hover:font-bold hover:text-white dark:bg-[#4A90E2] dark:border-[#357ABD] dark:hover:bg-[#7a7d80] dark:text-white"
           >
             저장
           </button>
@@ -120,7 +120,7 @@ const EditEventForm = ({ selectedEvent, handleDeleteEvent, handleUpdateEvent, ha
           <button
             type="button"
             onClick={handleDeleteEvent}
-            className="text-rose-700 px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:bg-rose-700 hover:text-white dark:bg-[#E57373] dark:border-[#C62828] dark:hover:bg-[#C62828] dark:text-white"
+            className="text-white bg-[#FF4C4C] hover:bg-[#C92A2A] px-2 py-1 rounded text-sm hover:font-bold duration-200 hover:text-white dark:bg-[#E57373] dark:border-[#C62828] dark:hover:bg-[#C62828] dark:text-white"
           >
             삭제
           </button>

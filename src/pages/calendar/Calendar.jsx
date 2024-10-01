@@ -5,6 +5,8 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import useThemeStore from '@store/useThemeStore'
 
+import { AnimatePresence, motion } from 'framer-motion'
+
 // css
 // 달력의 스타일을 설정
 import '@assets/styles/css/calendar/calendar.css'
@@ -240,21 +242,40 @@ const Calendar = () => {
           eventDrop={handleEventDrop} // 이벤트 드래그 후 위치가 변경되면 호출되는 핸들러
         />
 
-        {showModal && (
-          <EventModal
-            newEvent={newEvent} // 새 이벤트 상태를 전달
-            handleAddEvent={handleAddEvent} // 새 이벤트 추가 함수를 전달
-            handleCloseModal={handleCloseModal} // 모달 닫기 함수를 전달
-          />
-        )}
-        {showEditModal && selectedEvent && (
-          <EditEventModal
-            selectedEvent={selectedEvent} // 선택된 이벤트 정보를 전달
-            handleUpdateEvent={handleUpdateEvent} // 이벤트 수정 함수를 전달
-            handleDeleteEvent={handleDeleteEvent} // 이벤트 삭제 함수를 전달
-            handleCloseModal={handleCloseModal}
-          />
-        )}
+        <AnimatePresence>
+          {showModal && (
+            <motion.aside
+              initial={{ opacity: 0, zIndex: 1000 }}
+              animate={{ opacity: 1, zIndex: 1000 }}
+              exit={{ opacity: 0, zIndex: 1000 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              style={{ position: 'fixed' }}
+            >
+              <EventModal
+                newEvent={newEvent} // 새 이벤트 상태를 전달
+                handleAddEvent={handleAddEvent} // 새 이벤트 추가 함수를 전달
+                handleCloseModal={handleCloseModal} // 모달 닫기 함수를 전달
+              />
+            </motion.aside>
+          )}
+
+          {showEditModal && selectedEvent && (
+            <motion.aside
+              initial={{ opacity: 0, zIndex: 1000 }}
+              animate={{ opacity: 1, zIndex: 1000 }}
+              exit={{ opacity: 0, zIndex: 1000 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              style={{ position: 'fixed' }}
+            >
+              <EditEventModal
+                selectedEvent={selectedEvent} // 선택된 이벤트 정보를 전달
+                handleUpdateEvent={handleUpdateEvent} // 이벤트 수정 함수를 전달
+                handleDeleteEvent={handleDeleteEvent} // 이벤트 삭제 함수를 전달
+                handleCloseModal={handleCloseModal}
+              />
+            </motion.aside>
+          )}
+        </AnimatePresence>
       </div>
       <Footer />
     </>
