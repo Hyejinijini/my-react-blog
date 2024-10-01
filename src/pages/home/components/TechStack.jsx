@@ -141,7 +141,7 @@ const BubbleChartComponent = ({ data, options }) => {
 }
 
 // Test 컴포넌트
-const Test = () => {
+const TechStack = () => {
   const { isDarkMode } = useThemeStore()
 
   const data = [
@@ -189,4 +189,4 @@ const Test = () => {
   )
 }
 
-export default Test
+export default TechStack
