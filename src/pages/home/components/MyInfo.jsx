@@ -7,9 +7,7 @@ import styles from '@assets/styles/css/home/selfInfo.module.css'
 // components
 import InfoFront from '@pages/home/components/InfoFront.jsx'
 import InfoBack from '@pages/home/components/InfoBack.jsx'
-
-// test
-import Test from '@pages/home/components/Test.jsx'
+import TechStack from '@pages/home/components/TechStack.jsx'
 
 const MyInfo = () => {
   const [isFlipped, setIsFlipped] = useState(false)
@@ -37,7 +35,7 @@ const MyInfo = () => {
       </motion.div>
 
       {/* 기술 스택 부분 */}
-      {!isFlipped && <Test />}
+      {!isFlipped && <TechStack />}
     </div>
   )
 }
